@@ -1,4 +1,3 @@
-
 <%@page import="com.plagiar.entities.Groups"%>
 <%@page import="com.plagiar.entities.TeacherInfo"%>
 <%@page import="com.plagiar.entities.StudentInfo"%>
