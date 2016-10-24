@@ -2,10 +2,12 @@
 package com.plagiar;
 
 
+import com.plagiar.entities.Directory;
 import com.plagiar.entities.Groups;
 import com.plagiar.entities.StudentInfo;
 import com.plagiar.entities.TeacherInfo;
 import com.plagiar.entities.Users;
+import java.io.File;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 import java.util.logging.Level;
@@ -23,6 +25,7 @@ public class Plagiar implements PlagiarRemote {
     StudentInfo studentInfo;
     TeacherInfo teacherInfo;
     Groups groups;
+    Directory directory;
     
     @Override
     public void addStudentAccountInDatabase (Users users, Groups groups, StudentInfo studentInfo) {
@@ -36,6 +39,23 @@ public class Plagiar implements PlagiarRemote {
         em.persist(users);
         em.persist(groups);
         em.persist(teacherInfo);
+    }
+    
+    @Override
+    public void addCategoryInDatabase(Directory directory){
+        em.persist(directory);
+    }
+    
+    @Override
+    public void createDirectory(String category){
+        String path = "G:/Repository/" + category; 
+        File f = new File(path);
+
+    if(!f.exists()){
+        if(f.mkdirs()){
+            System.out.println("Directory created: "+category);
+        }
+    }
     }
     
     @Override

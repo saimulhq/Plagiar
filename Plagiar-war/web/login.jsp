@@ -28,7 +28,7 @@
                             <div style="text-align: center;">
                                 <a href="forgotPassword.jsp">Forgot Password?</a>
                                 <br/>
-                                Incompatible with Internet Explorer. Please use Firefox or Google Chrome for best performance.
+<!--                                Incompatible with Internet Explorer. Please use Firefox or Google Chrome for best performance.-->
                             </div>
                             </body>
                             </html>

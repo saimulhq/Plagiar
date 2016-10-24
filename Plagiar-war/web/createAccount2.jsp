@@ -1,12 +1,11 @@
-
-<%@page import="com.plagiar.entities.Groups"%>
-<%@page import="com.plagiar.entities.TeacherInfo"%>
-<%@page import="com.plagiar.entities.StudentInfo"%>
-<%@page import="com.plagiar.entities.Users"%>
-<%@page import="javax.naming.InitialContext"%>
-<%@page import="javax.naming.Context"%>
-<%@page import="com.plagiar.PlagiarRemote"%>
-<%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%@page import="com.plagiar.entities.Groups" %>
+<%@page import="com.plagiar.entities.TeacherInfo" %>
+<%@page import="com.plagiar.entities.StudentInfo" %>
+<%@page import="com.plagiar.entities.Users" %>
+<%@page import="javax.naming.InitialContext" %>
+<%@page import="javax.naming.Context" %>
+<%@page import="com.plagiar.PlagiarRemote" %>
+<%@page contentType="text/html" pageEncoding="UTF-8" %>
 <!DOCTYPE html>
 <html>
     <head>
