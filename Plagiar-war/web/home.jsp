@@ -6,12 +6,9 @@
         <link rel="shortcut icon" href="favicon.ico" />
     </head>
     <body>
-        Hello!!
+        Home
 
-        <!--<a href="/logout">dsfsf</a>-->
-        <!--        <form name="logout" action="logout.jsp">
-                    <input type="submit" value="Logout">    
-                </form>-->
+
         <br/>
         <a href="/Plagiar-war/logout">Logout</a>
     </body>
