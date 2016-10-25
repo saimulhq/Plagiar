@@ -6,7 +6,6 @@
 package com.plagiar.entities;
 
 import java.io.Serializable;
-import java.math.BigDecimal;
 import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -27,7 +26,6 @@ import javax.xml.bind.annotation.XmlRootElement;
 @XmlRootElement
 @NamedQueries({
     @NamedQuery(name = "Directory.findAll", query = "SELECT d FROM Directory d"),
-    @NamedQuery(name = "Directory.findByCategoryId", query = "SELECT d FROM Directory d WHERE d.categoryId = :categoryId"),
     @NamedQuery(name = "Directory.findByCategory", query = "SELECT d FROM Directory d WHERE d.category = :category"),
     @NamedQuery(name = "Directory.findByDepartment", query = "SELECT d FROM Directory d WHERE d.department = :department"),
     @NamedQuery(name = "Directory.findByUniversity", query = "SELECT d FROM Directory d WHERE d.university = :university"),
@@ -35,13 +33,10 @@ import javax.xml.bind.annotation.XmlRootElement;
 public class Directory implements Serializable {
 
     private static final long serialVersionUID = 1L;
-    // @Max(value=?)  @Min(value=?)//if you know range of your decimal fields consider using these annotations to enforce field validation
     @Id
     @Basic(optional = false)
     @NotNull
-    @Column(name = "CATEGORY_ID")
-    private BigDecimal categoryId;
-    @Size(max = 50)
+    @Size(min = 1, max = 50)
     @Column(name = "CATEGORY")
     private String category;
     @Size(max = 100)
@@ -57,16 +52,8 @@ public class Directory implements Serializable {
     public Directory() {
     }
 
-    public Directory(BigDecimal categoryId) {
-        this.categoryId = categoryId;
-    }
-
-    public BigDecimal getCategoryId() {
-        return categoryId;
-    }
-
-    public void setCategoryId(BigDecimal categoryId) {
-        this.categoryId = categoryId;
+    public Directory(String category) {
+        this.category = category;
     }
 
     public String getCategory() {
@@ -104,7 +91,7 @@ public class Directory implements Serializable {
     @Override
     public int hashCode() {
         int hash = 0;
-        hash += (categoryId != null ? categoryId.hashCode() : 0);
+        hash += (category != null ? category.hashCode() : 0);
         return hash;
     }
 
@@ -115,7 +102,7 @@ public class Directory implements Serializable {
             return false;
         }
         Directory other = (Directory) object;
-        if ((this.categoryId == null && other.categoryId != null) || (this.categoryId != null && !this.categoryId.equals(other.categoryId))) {
+        if ((this.category == null && other.category != null) || (this.category != null && !this.category.equals(other.category))) {
             return false;
         }
         return true;
@@ -123,7 +110,7 @@ public class Directory implements Serializable {
 
     @Override
     public String toString() {
-        return "com.plagiar.entities.Directory[ categoryId=" + categoryId + " ]";
+        return "com.plagiar.entities.Directory[ category=" + category + " ]";
     }
     
 }

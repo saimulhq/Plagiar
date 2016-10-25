@@ -1,14 +1,16 @@
-<%@page import="java.io.File" %>
-<%@page import="com.plagiar.entities.Directory" %>
-<%@page import="javax.naming.InitialContext" %>
-<%@page import="javax.naming.Context" %>
-<%@page import="com.plagiar.PlagiarRemote" %>
-<%@page contentType="text/html" pageEncoding="UTF-8" %>
+<%@ page import="com.plagiar.entities.Paths" %>
+<%@ page import="java.io.File" %>
+<%@ page import="com.plagiar.entities.Directory" %>
+<%@ page import="javax.naming.InitialContext" %>
+<%@ page import="javax.naming.Context" %>
+<%@ page import="com.plagiar.PlagiarRemote" %>
+<%@ page contentType="text/html" pageEncoding="UTF-8" %>
 <!DOCTYPE html>
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>Plagiar</title>
+        <link rel="shortcut icon" href="favicon.ico" />
     </head>
     <body>
         <h1>Done</h1>
@@ -18,7 +20,7 @@
             try {
                 Context context = new InitialContext();
                 plagiarRemote = (PlagiarRemote) context.lookup(PlagiarRemote.class.getName());
-                //List<MenuItd> listx = itdr.getMenuByUsername(name);
+                
             } catch (Exception e) {
                 e.printStackTrace();
             }
@@ -36,7 +38,9 @@
             directory.setCategory(catName);
 
             plagiarRemote.addCategoryInDatabase(directory);
-            plagiarRemote.createDirectory(catName);
+            Paths server = plagiarRemote.getDirectoryPath("CatPath");
+            String serverPath = server.getPath();
+            plagiarRemote.createDirectory(serverPath, catName);
 
         %>
     </body>

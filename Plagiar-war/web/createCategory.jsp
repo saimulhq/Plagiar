@@ -1,10 +1,11 @@
 
-<%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%@ page contentType="text/html" pageEncoding="UTF-8" %>
 <!DOCTYPE html>
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>Plagiar</title>
+        <link rel="shortcut icon" href="favicon.ico" />
     </head>
     <body>
         <h1>Create Category</h1>
@@ -21,6 +22,5 @@
             Category Name: <input name="catName" type="text"><br/><br/>
             <input type="submit" value="Create">
         </form>
-    </form>
 </body>
 </html>

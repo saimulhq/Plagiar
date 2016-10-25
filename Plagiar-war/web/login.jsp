@@ -2,6 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="cs" lang="cs">
     <head>
         <title>Plagiar</title>
+        <link rel="shortcut icon" href="favicon.ico" />
     </head>
 
 

@@ -2,7 +2,8 @@
 <html >
     <head>
 
-        <title>Plagiar</title>  
+        <title>Plagiar</title> 
+        <link rel="shortcut icon" href="favicon.ico" />
         <style>
             a:hover {
                 color:#D62020;
