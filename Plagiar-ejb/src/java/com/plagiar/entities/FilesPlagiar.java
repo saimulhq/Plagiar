@@ -25,16 +25,16 @@ import javax.xml.bind.annotation.XmlRootElement;
  * @author Saimul
  */
 @Entity
-@Table(name = "FILES")
+@Table(name = "FILES_PLAGIAR")
 @XmlRootElement
 @NamedQueries({
-    @NamedQuery(name = "Files.findAll", query = "SELECT f FROM Files f"),
-    @NamedQuery(name = "Files.findByCategory", query = "SELECT f FROM Files f WHERE f.category = :category"),
-    @NamedQuery(name = "Files.findByFilename", query = "SELECT f FROM Files f WHERE f.filename = :filename"),
-    @NamedQuery(name = "Files.findByFilelocation", query = "SELECT f FROM Files f WHERE f.filelocation = :filelocation"),
-    @NamedQuery(name = "Files.findByAddedby", query = "SELECT f FROM Files f WHERE f.addedby = :addedby"),
-    @NamedQuery(name = "Files.findByTimeadded", query = "SELECT f FROM Files f WHERE f.timeadded = :timeadded")})
-public class Files implements Serializable {
+    @NamedQuery(name = "FilesPlagiar.findAll", query = "SELECT f FROM FilesPlagiar f"),
+    @NamedQuery(name = "FilesPlagiar.findByCategory", query = "SELECT f FROM FilesPlagiar f WHERE f.category = :category"),
+    @NamedQuery(name = "FilesPlagiar.findByFilename", query = "SELECT f FROM FilesPlagiar f WHERE f.filename = :filename"),
+    @NamedQuery(name = "FilesPlagiar.findByFilelocation", query = "SELECT f FROM FilesPlagiar f WHERE f.filelocation = :filelocation"),
+    @NamedQuery(name = "FilesPlagiar.findByAddedby", query = "SELECT f FROM FilesPlagiar f WHERE f.addedby = :addedby"),
+    @NamedQuery(name = "FilesPlagiar.findByTimeadded", query = "SELECT f FROM FilesPlagiar f WHERE f.timeadded = :timeadded")})
+public class FilesPlagiar implements Serializable {
 
     private static final long serialVersionUID = 1L;
     @Size(max = 50)
@@ -56,10 +56,10 @@ public class Files implements Serializable {
     @Temporal(TemporalType.TIMESTAMP)
     private Date timeadded;
 
-    public Files() {
+    public FilesPlagiar() {
     }
 
-    public Files(String filename) {
+    public FilesPlagiar(String filename) {
         this.filename = filename;
     }
 
@@ -113,10 +113,10 @@ public class Files implements Serializable {
     @Override
     public boolean equals(Object object) {
         // TODO: Warning - this method won't work in the case the id fields are not set
-        if (!(object instanceof Files)) {
+        if (!(object instanceof FilesPlagiar)) {
             return false;
         }
-        Files other = (Files) object;
+        FilesPlagiar other = (FilesPlagiar) object;
         if ((this.filename == null && other.filename != null) || (this.filename != null && !this.filename.equals(other.filename))) {
             return false;
         }
@@ -125,7 +125,7 @@ public class Files implements Serializable {
 
     @Override
     public String toString() {
-        return "com.plagiar.entities.Files[ filename=" + filename + " ]";
+        return "com.plagiar.entities.FilesPlagiar[ filename=" + filename + " ]";
     }
     
 }

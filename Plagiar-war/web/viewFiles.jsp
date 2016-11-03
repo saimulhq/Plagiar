@@ -1,5 +1,5 @@
 
-<%@ page import="com.plagiar.entities.Files" %>
+<%@ page import="com.plagiar.entities.FilesPlagiar" %>
 <%@ page import="java.util.List" %>
 <%@ page import="javax.naming.InitialContext" %>
 <%@ page import="javax.naming.Context" %>
@@ -26,7 +26,7 @@
             }
             
             String category = request.getParameter("category");
-            List<Files> listAllFiles = plagiarRemote.getFilesList(category);
+            List<FilesPlagiar> listAllFiles = plagiarRemote.getFilesList(category);
            
         %>
         <table>
@@ -35,7 +35,7 @@
             </thead>
             <tbody>
                 <% 
-                    for(Files files:listAllFiles){ %>
+                    for(FilesPlagiar files:listAllFiles){ %>
                     <tr><td><a href="fileDownload.jsp?fileLocation=<%=files.getFilelocation()%>&filename=<%=files.getFilename()%>"><%=files.getFilename()%></a></td><td><%=files.getAddedby()%></td><td><%=files.getTimeadded()%></td></tr>
                 <% } %>
             </tbody>

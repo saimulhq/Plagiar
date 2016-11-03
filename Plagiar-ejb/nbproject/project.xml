@@ -5,6 +5,9 @@
         <data xmlns="http://www.netbeans.org/ns/j2ee-ejbjarproject/3">
             <name>Plagiar-ejb</name>
             <minimum-ant-version>1.6.5</minimum-ant-version>
+            <included-library dirs="200">file.reference.lucene-analyzers-common-4.10.2.jar</included-library>
+            <included-library dirs="200">file.reference.lucene-core-4.10.2.jar</included-library>
+            <included-library dirs="200">file.reference.commons-math3-3.0.jar</included-library>
             <source-roots>
                 <root id="src.dir"/>
             </source-roots>

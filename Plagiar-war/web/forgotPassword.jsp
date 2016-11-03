@@ -18,7 +18,7 @@
         
         <div style="padding: 25px;text-align: center; font-size: 0.7em; color: #052b4d; font: Verdana, sans-serif;">
 
-            &copy; saimul 
+            &copy; Plagiar. All rights reserved. 
         </div>
     </body >
 </html>

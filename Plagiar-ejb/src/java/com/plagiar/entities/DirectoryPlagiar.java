@@ -22,15 +22,15 @@ import javax.xml.bind.annotation.XmlRootElement;
  * @author Saimul
  */
 @Entity
-@Table(name = "DIRECTORY")
+@Table(name = "DIRECTORY_PLAGIAR")
 @XmlRootElement
 @NamedQueries({
-    @NamedQuery(name = "Directory.findAll", query = "SELECT d FROM Directory d"),
-    @NamedQuery(name = "Directory.findByCategory", query = "SELECT d FROM Directory d WHERE d.category = :category"),
-    @NamedQuery(name = "Directory.findByDepartment", query = "SELECT d FROM Directory d WHERE d.department = :department"),
-    @NamedQuery(name = "Directory.findByUniversity", query = "SELECT d FROM Directory d WHERE d.university = :university"),
-    @NamedQuery(name = "Directory.findByType", query = "SELECT d FROM Directory d WHERE d.type = :type")})
-public class Directory implements Serializable {
+    @NamedQuery(name = "DirectoryPlagiar.findAll", query = "SELECT d FROM DirectoryPlagiar d"),
+    @NamedQuery(name = "DirectoryPlagiar.findByCategory", query = "SELECT d FROM DirectoryPlagiar d WHERE d.category = :category"),
+    @NamedQuery(name = "DirectoryPlagiar.findByDepartment", query = "SELECT d FROM DirectoryPlagiar d WHERE d.department = :department"),
+    @NamedQuery(name = "DirectoryPlagiar.findByUniversity", query = "SELECT d FROM DirectoryPlagiar d WHERE d.university = :university"),
+    @NamedQuery(name = "DirectoryPlagiar.findByType", query = "SELECT d FROM DirectoryPlagiar d WHERE d.type = :type")})
+public class DirectoryPlagiar implements Serializable {
 
     private static final long serialVersionUID = 1L;
     @Id
@@ -49,10 +49,10 @@ public class Directory implements Serializable {
     @Column(name = "TYPE")
     private String type;
 
-    public Directory() {
+    public DirectoryPlagiar() {
     }
 
-    public Directory(String category) {
+    public DirectoryPlagiar(String category) {
         this.category = category;
     }
 
@@ -98,10 +98,10 @@ public class Directory implements Serializable {
     @Override
     public boolean equals(Object object) {
         // TODO: Warning - this method won't work in the case the id fields are not set
-        if (!(object instanceof Directory)) {
+        if (!(object instanceof DirectoryPlagiar)) {
             return false;
         }
-        Directory other = (Directory) object;
+        DirectoryPlagiar other = (DirectoryPlagiar) object;
         if ((this.category == null && other.category != null) || (this.category != null && !this.category.equals(other.category))) {
             return false;
         }
@@ -110,7 +110,7 @@ public class Directory implements Serializable {
 
     @Override
     public String toString() {
-        return "com.plagiar.entities.Directory[ category=" + category + " ]";
+        return "com.plagiar.entities.DirectoryPlagiar[ category=" + category + " ]";
     }
     
 }

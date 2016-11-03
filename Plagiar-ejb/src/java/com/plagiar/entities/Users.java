@@ -27,7 +27,8 @@ import javax.xml.bind.annotation.XmlRootElement;
 @NamedQueries({
     @NamedQuery(name = "Users.findAll", query = "SELECT u FROM Users u"),
     @NamedQuery(name = "Users.findByUsername", query = "SELECT u FROM Users u WHERE u.username = :username"),
-    @NamedQuery(name = "Users.findByPassword", query = "SELECT u FROM Users u WHERE u.password = :password")})
+    @NamedQuery(name = "Users.findByPassword", query = "SELECT u FROM Users u WHERE u.password = :password"),
+    @NamedQuery(name = "Users.findByRole", query = "SELECT u FROM Users u WHERE u.role = :role")})
 public class Users implements Serializable {
 
     private static final long serialVersionUID = 1L;
@@ -42,6 +43,9 @@ public class Users implements Serializable {
     @Size(min = 1, max = 200)
     @Column(name = "PASSWORD")
     private String password;
+    @Size(max = 20)
+    @Column(name = "ROLE")
+    private String role;
 
     public Users() {
     }
@@ -69,6 +73,14 @@ public class Users implements Serializable {
 
     public void setPassword(String password) {
         this.password = password;
+    }
+
+    public String getRole() {
+        return role;
+    }
+
+    public void setRole(String role) {
+        this.role = role;
     }
 
     @Override

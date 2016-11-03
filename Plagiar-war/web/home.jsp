@@ -1,15 +1,21 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
     <head>
-        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
         <title>Plagiar</title>
+        <link href="bootstrap/css/bootstrap.min.css" rel="stylesheet">
+        <link href="styles/template.css" rel="stylesheet">
+        <script src="jquery/jquery-1.12.4.min.js"></script>
+        <script src="bootstrap/js/bootstrap.min.js"></script>
         <link rel="shortcut icon" href="favicon.ico" />
     </head>
     <body>
-        Home
-
-
-        <br/>
-        <a href="/Plagiar-war/logout">Logout</a>
+        <jsp:include page="header.jsp"/>
+        
+        <jsp:include page="navigation.jsp"/>
+        
+        <jsp:include page="mainPage.jsp"/>
+        
+        <jsp:include page="footer.jsp"/>
     </body>
 </html>

@@ -22,13 +22,13 @@ import javax.xml.bind.annotation.XmlRootElement;
  * @author Saimul
  */
 @Entity
-@Table(name = "PATHS")
+@Table(name = "PATHS_PLAGIAR")
 @XmlRootElement
 @NamedQueries({
-    @NamedQuery(name = "Paths.findAll", query = "SELECT p FROM Paths p"),
-    @NamedQuery(name = "Paths.findByPathname", query = "SELECT p FROM Paths p WHERE p.pathname = :pathname"),
-    @NamedQuery(name = "Paths.findByPath", query = "SELECT p FROM Paths p WHERE p.path = :path")})
-public class Paths implements Serializable {
+    @NamedQuery(name = "PathsPlagiar.findAll", query = "SELECT p FROM PathsPlagiar p"),
+    @NamedQuery(name = "PathsPlagiar.findByPathname", query = "SELECT p FROM PathsPlagiar p WHERE p.pathname = :pathname"),
+    @NamedQuery(name = "PathsPlagiar.findByPath", query = "SELECT p FROM PathsPlagiar p WHERE p.path = :path")})
+public class PathsPlagiar implements Serializable {
 
     private static final long serialVersionUID = 1L;
     @Id
@@ -41,10 +41,10 @@ public class Paths implements Serializable {
     @Column(name = "PATH")
     private String path;
 
-    public Paths() {
+    public PathsPlagiar() {
     }
 
-    public Paths(String pathname) {
+    public PathsPlagiar(String pathname) {
         this.pathname = pathname;
     }
 
@@ -74,10 +74,10 @@ public class Paths implements Serializable {
     @Override
     public boolean equals(Object object) {
         // TODO: Warning - this method won't work in the case the id fields are not set
-        if (!(object instanceof Paths)) {
+        if (!(object instanceof PathsPlagiar)) {
             return false;
         }
-        Paths other = (Paths) object;
+        PathsPlagiar other = (PathsPlagiar) object;
         if ((this.pathname == null && other.pathname != null) || (this.pathname != null && !this.pathname.equals(other.pathname))) {
             return false;
         }
@@ -86,7 +86,7 @@ public class Paths implements Serializable {
 
     @Override
     public String toString() {
-        return "com.plagiar.entities.Paths[ pathname=" + pathname + " ]";
+        return "com.plagiar.entities.PathsPlagiar[ pathname=" + pathname + " ]";
     }
     
 }

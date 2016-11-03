@@ -1,6 +1,6 @@
-<%@ page import="com.plagiar.entities.Paths" %>
+<%@ page import="com.plagiar.entities.PathsPlagiar" %>
+<%@ page import="com.plagiar.entities.DirectoryPlagiar" %>
 <%@ page import="java.io.File" %>
-<%@ page import="com.plagiar.entities.Directory" %>
 <%@ page import="javax.naming.InitialContext" %>
 <%@ page import="javax.naming.Context" %>
 <%@ page import="com.plagiar.PlagiarRemote" %>
@@ -25,7 +25,7 @@
                 e.printStackTrace();
             }
 
-            Directory directory = new Directory();
+            DirectoryPlagiar directory = new DirectoryPlagiar();
 
             String university = request.getParameter("university");
             String department = request.getParameter("department");
@@ -38,7 +38,7 @@
             directory.setCategory(catName);
 
             plagiarRemote.addCategoryInDatabase(directory);
-            Paths server = plagiarRemote.getDirectoryPath("CatPath");
+            PathsPlagiar server = plagiarRemote.getDirectoryPath("CatPath");
             String serverPath = server.getPath();
             plagiarRemote.createDirectory(serverPath, catName);
 
