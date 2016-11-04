@@ -9,13 +9,13 @@
     </head>
     <body>
         <div class="container-fluid">
-        <div class="row" id="contentRow"s>
+        <div class="row" id="contentRow">
              <jsp:include page="menu.jsp"/>
             <div class="col-md-10 col-sm-10" id="contentBody">
 
 
                 <div class="panel-default">
-                    <div class="panel-body">Empty
+                    <div class="panel-body">
                     </div>
                 </div>
             </div>

@@ -6,16 +6,19 @@
 <%@ page import="com.plagiar.PlagiarRemote" %>
 <%@ page contentType="text/html" pageEncoding="UTF-8" %>
 <!DOCTYPE html>
-<html>
+<html lang="en">
     <head>
-        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
         <title>Plagiar</title>
         <link rel="shortcut icon" href="favicon.ico" />
+        <link href="bootstrap/css/bootstrap.min.css" rel="stylesheet">
+        <link href="styles/template.css" rel="stylesheet">
+        <script src="jquery/jquery-1.12.4.min.js"></script>
+        <script src="bootstrap/js/bootstrap.min.js"></script>
     </head>
     <body>
-        <h1>Check Plagiarism</h1>
         <%
-        PlagiarRemote plagiarRemote = null;
+            PlagiarRemote plagiarRemote = null;
 
             try {
                 Context context = new InitialContext();
@@ -26,21 +29,39 @@
             }
             List<DirectoryPlagiar> listAllCategory = plagiarRemote.getDirectoryList();
         %>
-        <form action="checkPlagiarism2.jsp" method="post" enctype="multipart/form-data">
-        Select a category: <select name="category">
-                <option selected="selected">Please select ...</option>
-                <%
-                    for (DirectoryPlagiar category : listAllCategory) {
-                %><option><%=category.getCategory()%></option><%
-                    }
-                %>
-            </select>
-        <br/>
-        Upload file: <input type="file" name="file" accept=".pdf"/>
-        <br />
-        <input type="submit" value="Upload File" />
-        </form>
+        <jsp:include page="header.jsp"/>
         
-       
+        <jsp:include page="navigation.jsp"/>
+        <div class="container-fluid">
+            <div class="row" id="contentRow"s>
+                <jsp:include page="menu.jsp"/>
+                <div class="col-md-10 col-sm-10" id="contentBody">
+
+
+                    <div class="panel-default">
+                        <div class="panel-body">
+                            <h3>Check Plagiarism</h3>
+                            <br/>
+                            <form action="checkPlagiarism2.jsp" method="post" enctype="multipart/form-data">
+                                Select a category: <select name="category" class="form-control" style="width:300px;">
+                                    <option selected="selected">Please select ...</option>
+                                    <%
+                                        for (DirectoryPlagiar category : listAllCategory) {
+                                    %><option><%=category.getCategory()%></option><%
+                                        }
+                                    %>
+                                </select>
+                                <br/>
+                                Upload file:<input type="file" name="file" class="form-control" style="width:300px;" accept=".pdf" />
+                                <br />
+                                <button type="submit" class="btn btn-default">Upload File</button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <jsp:include page="footer.jsp"/>
     </body>
 </html>

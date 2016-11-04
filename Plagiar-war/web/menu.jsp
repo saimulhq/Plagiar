@@ -34,7 +34,7 @@
                 <%
                     for (Menu mn : listMenu) {
                 %>
-                <li><a href="<%=mn.getFilename()%>"><b><%=mn.getMenuDesc()%></b></a></li>
+                <li><a href="<%=mn.getFilename()%>" style="color:#23527c;"  onMouseOver="this.style.color='blue'" onMouseOut="this.style.color='#23527c'"><b><%=mn.getMenuDesc()%></b></a></li>
                             <%
                                 }
                             %>

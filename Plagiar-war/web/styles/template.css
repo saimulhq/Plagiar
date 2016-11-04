@@ -7,10 +7,15 @@ html, body {
 
 #header {
     margin-bottom: 0%;
+    background-color: white;
+    color: #23527c;
+    border-bottom: 0px;
 }
 
 #navigation {
     margin-bottom: 0%;
+    background-color: #23527c;
+    border: 0px;
 }
 
 #navLogout {
@@ -31,6 +36,9 @@ html, body {
 
 #menu {
     padding-right: 0%;
+    background-color: gainsboro;
+    /*color: #23527c;*/
+    height: 523px;
 }
 
 #contentRow {
@@ -38,11 +46,11 @@ html, body {
 }
 
 #contentBody {
-    height:520px;
+    height:523px;
 }
 
 .footer {
     text-align: center;
-    color: black;
-    background-color: gainsboro;
+    color: white;
+    background-color: #23527c;
 }

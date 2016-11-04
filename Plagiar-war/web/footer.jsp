@@ -9,7 +9,7 @@
     </head>
     <body>
         <footer class="footer">
-            <font>&copy; Plagiar. All rights reserved.</font>
+            <font><b>&copy; Plagiar. All rights reserved.</b></font>
         </footer>
     </body>
 </html>

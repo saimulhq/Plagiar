@@ -8,12 +8,27 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
         <title>Plagiar</title>
         <link rel="shortcut icon" href="favicon.ico" />
+        <link href="styles/template.css" rel="stylesheet">
+        <link href="bootstrap/css/bootstrap.min.css" rel="stylesheet">
+        <script src="jquery/jquery-1.12.4.min.js"></script>
+        <script src="bootstrap/js/bootstrap.min.js"></script>
     </head>
     <body>
-        <h1>View Files</h1>
+         <jsp:include page="header.jsp"/>
+        
+        <jsp:include page="navigation.jsp"/>
+        
+        <div class="container-fluid">
+        <div class="row" id="contentRow">
+             <jsp:include page="menu.jsp"/>
+            <div class="col-md-10 col-sm-10" id="contentBody">
+
+                <div class="panel-default">
+                    <div class="panel-body">
+                        <h3>View Files</h3>
         <% 
         PlagiarRemote plagiarRemote = null;
 
@@ -40,5 +55,12 @@
                 <% } %>
             </tbody>
         </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+        </div>
+        
+        <jsp:include page="footer.jsp"/>
     </body>
 </html>
