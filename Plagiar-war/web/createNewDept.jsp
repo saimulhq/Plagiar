@@ -1,6 +1,7 @@
-<%@ page import="com.plagiar.entities.DirectoryPlagiar" %>
-<%@ page import="java.util.List" %>
+
 <%@ page import="javax.naming.InitialContext" %>
+<%@ page import="com.plagiar.entities.University" %>
+<%@ page import="java.util.List" %>
 <%@ page import="javax.naming.Context" %>
 <%@ page import="javax.naming.Context" %>
 <%@ page import="com.plagiar.PlagiarRemote" %>
@@ -11,13 +12,12 @@
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <title>Plagiar</title>
         <link rel="shortcut icon" href="favicon.ico" />
-        <link href="styles/template.css" rel="stylesheet">
         <link href="bootstrap/css/bootstrap.min.css" rel="stylesheet">
+        <link href="styles/template.css" rel="stylesheet">
         <script src="jquery/jquery-1.12.4.min.js"></script>
         <script src="bootstrap/js/bootstrap.min.js"></script>
     </head>
     <body>
-
         <%
             PlagiarRemote plagiarRemote = null;
 
@@ -28,10 +28,8 @@
             } catch (Exception e) {
                 e.printStackTrace();
             }
-
-            List<DirectoryPlagiar> listAllDirectory = plagiarRemote.getDirectoryList();
+            List<University> listAllUniversity = plagiarRemote.getUniversityList();
         %>
-
         <jsp:include page="header.jsp"/>
 
         <jsp:include page="navigation.jsp"/>
@@ -44,19 +42,20 @@
 
                     <div class="panel-default">
                         <div class="panel-body">
-                            <h3>View Repository</h3>
-
-                            <table>
-                                <thead>
-                                <th>Directory</th>
-                                </thead>
-                                <tbody>
+                            <h3>New Department</h3>
+                            <form name="createDept" action="createNewDept2.jsp">
+                                
+                                Select University: <select name="university" class="form-control" style="width:300px;">
+                                    <option selected="selected">Please select ...</option>
                                     <%
-                                        for (DirectoryPlagiar dir : listAllDirectory) {%>
-                                    <tr><td><a href="viewFiles.jsp?category=<%=dir.getCategory()%>" style="text-decoration: none;"><%=dir.getCategory()%></a></td><td><a href="addFile.jsp?category=<%=dir.getCategory()%>" style="text-decoration: none;">Add file</a></td></tr>
-                                            <% }%>
-                                </tbody>
-                            </table>
+                                        for (University university : listAllUniversity) {
+                                    %><option><%=university.getUniversityName()%></option><%
+                                        }
+                                    %>
+                                </select><br/>
+                                Department Name: <input name="department" type="text" class="form-control" style="width:300px;"><br/>  
+                                <button type="submit" class="btn btn-default">Create</button>
+                            </form>
                         </div>
                     </div>
                 </div>

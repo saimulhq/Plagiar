@@ -1,23 +1,70 @@
 
+<%@page import="com.plagiar.entities.University"%>
+<%@page import="java.util.List"%>
+<%@page import="javax.naming.InitialContext"%>
+<%@page import="javax.naming.Context"%>
+<%@page import="com.plagiar.PlagiarRemote"%>
 <%@ page contentType="text/html" pageEncoding="UTF-8" %>
 <!DOCTYPE html>
-<html>
+<html lang="en">
     <head>
-        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
         <title>Plagiar</title>
         <link rel="shortcut icon" href="favicon.ico" />
+        <link href="bootstrap/css/bootstrap.min.css" rel="stylesheet">
+        <link href="styles/template.css" rel="stylesheet">
+        <script src="jquery/jquery-1.12.4.min.js"></script>
+        <script src="bootstrap/js/bootstrap.min.js"></script>
     </head>
     <body>
-        <h1>Upload File</h1>
-        <%
-            String category = request.getParameter("category");
-            System.out.println("category name: "+category);
-        
-        %>
-        <form action="addFile2.jsp?category=<%=category%>" method="post" enctype="multipart/form-data">
-        <input type="file" name="file" accept=".doc, .docx" multiple="multiple"/>
-        <br />
-        <input type="submit" value="Upload File" />
-        </form>
+        <jsp:include page="header.jsp"/>
+
+        <jsp:include page="navigation.jsp"/>
+
+
+        <div class="container-fluid">
+            <div class="row" id="contentRow">
+                <jsp:include page="menu.jsp"/>
+                <div class="col-md-10 col-sm-10" id="contentBody">
+
+
+                    <div class="panel-default">
+                        <div class="panel-body">
+                            <h3>Add File</h3>
+                            <%
+                                PlagiarRemote plagiarRemote = null;
+
+                                try {
+                                    Context context = new InitialContext();
+                                    plagiarRemote = (PlagiarRemote) context.lookup(PlagiarRemote.class.getName());
+
+                                } catch (Exception e) {
+                                    e.printStackTrace();
+                                }
+                                
+
+                                //String category = request.getParameter("category");
+                                //System.out.println("category name: "+category);
+
+                            %>
+                            <form action="addFile2.jsp">
+                                Select submission type: <select name="categoryType" class="form-control" style="width: 300px;">
+                                    <option selected="selected">Please select ...</option>
+                                    <option>Assignment</option>
+                                    <option>Project</option>
+                                    <option>Thesis</option>
+                                </select><br/>
+                                
+
+                                <!--<input type="file" name="file" accept=".pdf" multiple="multiple"/>
+                                <br />-->
+                                <button type="submit" class="btn btn-default">Next</button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <jsp:include page="footer.jsp"/>
     </body>
 </html>

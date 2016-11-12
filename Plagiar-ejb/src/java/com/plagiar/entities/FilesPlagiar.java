@@ -33,7 +33,14 @@ import javax.xml.bind.annotation.XmlRootElement;
     @NamedQuery(name = "FilesPlagiar.findByFilename", query = "SELECT f FROM FilesPlagiar f WHERE f.filename = :filename"),
     @NamedQuery(name = "FilesPlagiar.findByFilelocation", query = "SELECT f FROM FilesPlagiar f WHERE f.filelocation = :filelocation"),
     @NamedQuery(name = "FilesPlagiar.findByAddedby", query = "SELECT f FROM FilesPlagiar f WHERE f.addedby = :addedby"),
-    @NamedQuery(name = "FilesPlagiar.findByTimeadded", query = "SELECT f FROM FilesPlagiar f WHERE f.timeadded = :timeadded")})
+    @NamedQuery(name = "FilesPlagiar.findByTimeadded", query = "SELECT f FROM FilesPlagiar f WHERE f.timeadded = :timeadded"),
+    @NamedQuery(name = "FilesPlagiar.findByTitle", query = "SELECT f FROM FilesPlagiar f WHERE f.title = :title"),
+    @NamedQuery(name = "FilesPlagiar.findByAuthor", query = "SELECT f FROM FilesPlagiar f WHERE f.author = :author"),
+    @NamedQuery(name = "FilesPlagiar.findByCategoryType", query = "SELECT f FROM FilesPlagiar f WHERE f.categoryType = :categoryType"),
+    @NamedQuery(name = "FilesPlagiar.findByPublishedYear", query = "SELECT f FROM FilesPlagiar f WHERE f.publishedYear = :publishedYear"),
+    @NamedQuery(name = "FilesPlagiar.findByDepartment", query = "SELECT f FROM FilesPlagiar f WHERE f.department = :department"),
+    @NamedQuery(name = "FilesPlagiar.findByUniversity", query = "SELECT f FROM FilesPlagiar f WHERE f.university = :university"),
+    @NamedQuery(name = "FilesPlagiar.findByAssignedto", query = "SELECT f FROM FilesPlagiar f WHERE f.assignedto = :assignedto")})
 public class FilesPlagiar implements Serializable {
 
     private static final long serialVersionUID = 1L;
@@ -55,6 +62,27 @@ public class FilesPlagiar implements Serializable {
     @Column(name = "TIMEADDED")
     @Temporal(TemporalType.TIMESTAMP)
     private Date timeadded;
+    @Size(max = 100)
+    @Column(name = "TITLE")
+    private String title;
+    @Size(max = 60)
+    @Column(name = "AUTHOR")
+    private String author;
+    @Size(max = 20)
+    @Column(name = "CATEGORY_TYPE")
+    private String categoryType;
+    @Size(max = 20)
+    @Column(name = "PUBLISHED_YEAR")
+    private String publishedYear;
+    @Size(max = 100)
+    @Column(name = "DEPARTMENT")
+    private String department;
+    @Size(max = 60)
+    @Column(name = "UNIVERSITY")
+    private String university;
+    @Size(max = 60)
+    @Column(name = "ASSIGNEDTO")
+    private String assignedto;
 
     public FilesPlagiar() {
     }
@@ -101,6 +129,62 @@ public class FilesPlagiar implements Serializable {
 
     public void setTimeadded(Date timeadded) {
         this.timeadded = timeadded;
+    }
+
+    public String getTitle() {
+        return title;
+    }
+
+    public void setTitle(String title) {
+        this.title = title;
+    }
+
+    public String getAuthor() {
+        return author;
+    }
+
+    public void setAuthor(String author) {
+        this.author = author;
+    }
+
+    public String getCategoryType() {
+        return categoryType;
+    }
+
+    public void setCategoryType(String categoryType) {
+        this.categoryType = categoryType;
+    }
+
+    public String getPublishedYear() {
+        return publishedYear;
+    }
+
+    public void setPublishedYear(String publishedYear) {
+        this.publishedYear = publishedYear;
+    }
+
+    public String getDepartment() {
+        return department;
+    }
+
+    public void setDepartment(String department) {
+        this.department = department;
+    }
+
+    public String getUniversity() {
+        return university;
+    }
+
+    public void setUniversity(String university) {
+        this.university = university;
+    }
+
+    public String getAssignedto() {
+        return assignedto;
+    }
+
+    public void setAssignedto(String assignedto) {
+        this.assignedto = assignedto;
     }
 
     @Override

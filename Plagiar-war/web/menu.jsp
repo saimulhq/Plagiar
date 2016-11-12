@@ -1,4 +1,5 @@
 
+<%@ page import="com.plagiar.entities.Users" %>
 <%@ page import="com.plagiar.entities.Menu" %>
 <%@ page import="java.util.List" %>
 <%@ page import="javax.naming.InitialContext" %>
@@ -9,9 +10,9 @@
 <html>
     <head>
         <link href="styles/template.css" rel="stylesheet">
-        <link href="bootstrap/css/bootstrap.min.css" rel="stylesheet">
-        <script src="bootstrap/js/bootstrap.min.js"></script>
         <script src="jquery/jquery-1.12.4.min.js"></script>
+        <script src="bootstrap/js/bootstrap.min.js"></script>
+        <link href="bootstrap/css/bootstrap.min.css" rel="stylesheet">
     </head>
     <body>
         <%
@@ -26,20 +27,47 @@
             }
             String username = request.getUserPrincipal().getName();
             List<Menu> listMenu = plagiarRemote.getMenuByUsername(username);
+            Users users = plagiarRemote.getUserRole(username);
+
+            String role = users.getRole();
+
+            if (role.equals("student")) {
         %>
-
-
         <div class="col-md-2 col-sm-2" id="menu">       
             <ul class="nav nav-stacked">
-                <%
-                    for (Menu mn : listMenu) {
-                %>
-                <li><a href="<%=mn.getFilename()%>" style="color:#23527c;"  onMouseOver="this.style.color='blue'" onMouseOut="this.style.color='#23527c'"><b><%=mn.getMenuDesc()%></b></a></li>
-                            <%
-                                }
-                            %>
+                <li><a href="home.jsp" style="color:#23527c; border-top:0px;margin:0px;" onMouseOver="this.style.color = 'blue'" onMouseOut="this.style.color = '#23527c'"><b>Home</b></a></li>
+                <li><a href="addFile.jsp" style="color:#23527c; border:0px;" onMouseOver="this.style.color = 'blue'" onMouseOut="this.style.color = '#23527c'"><b>Add File</b></a></li>
+                <li><a href="checkPlagiarism.jsp" style="color:#23527c; border:0px;" onMouseOver="this.style.color = 'blue'" onMouseOut="this.style.color = '#23527c'"><b>Check Plagiarism</b></a></li>
             </ul>
         </div>
+        <% } else if (role.equals("teacher")) {
+        %>
+        <div class="col-md-2 col-sm-2" id="menu">       
+            <ul class="nav nav-stacked">
+                <li><a href="home.jsp" style="color:#23527c; border-top:0px;margin:0px;" onMouseOver="this.style.color = 'blue'" onMouseOut="this.style.color = '#23527c'"><b>Home</b></a></li>
+                <li><a data-toggle="collapse" href="#collapseFour" style="color:#23527c; border:0px;margin:0px;" onMouseOver="this.style.color = 'blue'" onMouseOut="this.style.color = '#23527c'"><b>Create New</b></a></li>
+                <div id="collapseFour" class="panel-collapse collapse">
+                    <li><a href="createNewUni.jsp" class="list-group-item" style="background-color: gainsboro; border:0px; color:#23527c; padding-left:15%;" onMouseOver="this.style.color = 'blue';this.style.backgroundColor = '#EEEEEE';" onMouseOut="this.style.color = '#23527c';this.style.backgroundColor = 'gainsboro';"><b>University</b></a></li>
+                    <li><a href="createNewDept.jsp" class="list-group-item" style="background-color: gainsboro; border:0px; color:#23527c; padding-left:15%;" onMouseOver="this.style.color = 'blue';this.style.backgroundColor = '#EEEEEE';" onMouseOut="this.style.color = '#23527c';this.style.backgroundColor = 'gainsboro';"><b>Department</b></a></li>
+                    <li><a href="createCategory.jsp" class="list-group-item" style="background-color: gainsboro; border:0px; color:#23527c; padding-left:15%;" onMouseOver="this.style.color = 'blue';this.style.backgroundColor = '#EEEEEE';" onMouseOut="this.style.color = '#23527c';this.style.backgroundColor = 'gainsboro';"><b>Category</b></a></li>
+                </div>
+                <li><a href="addFile.jsp" style="color:#23527c; border:0px;" onMouseOver="this.style.color = 'blue'" onMouseOut="this.style.color = '#23527c'"><b>Add File</b></a></li>
+                <li><a href="checkPlagiarism.jsp" style="color:#23527c; border:0px;" onMouseOver="this.style.color = 'blue'" onMouseOut="this.style.color = '#23527c'"><b>Check Plagiarism</b></a></li>
+            </ul>
+        </div>
+        <%
+        } else {
+        %>
+        <div class="col-md-2 col-sm-2" id="menu">       
+            <ul class="nav nav-stacked">
+                <li><a href="home.jsp" style="color:#23527c; border-top:0px;margin:0px;" onMouseOver="this.style.color = 'blue'" onMouseOut="this.style.color = '#23527c'"><b>Home</b></a></li>
+                <li><a href="createAccount.jsp" style="color:#23527c; border-top:0px;margin:0px;" onMouseOver="this.style.color = 'blue'" onMouseOut="this.style.color = '#23527c'"><b>Create Account</b></a></li>
+            </ul>
+        </div>
+        <%
+            }
+
+        %>
 
 
 

@@ -7,11 +7,15 @@
 <%@ page import="com.plagiar.PlagiarRemote" %>
 <%@ page contentType="text/html" pageEncoding="UTF-8" %>
 <!DOCTYPE html>
-<html>
+<html lang="en">
     <head>
-        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
         <title>Plagiar</title>
         <link rel="shortcut icon" href="favicon.ico" />
+        <link href="bootstrap/css/bootstrap.min.css" rel="stylesheet">
+        <link href="styles/template.css" rel="stylesheet">
+        <script src="jquery/jquery-1.12.4.min.js"></script>
+        <script src="bootstrap/js/bootstrap.min.js"></script>
     </head>
     <body>
         <%
@@ -51,6 +55,7 @@
                 users.setPassword(hashTPassword);
                 groups.setUsername(t_username);
                 groups.setRole("teacher");
+                users.setRole("teacher");
                 teacherInfo.setUsername(t_username);
                 teacherInfo.setDesignation(designation);
                 teacherInfo.setDepartment(t_dept);
@@ -66,6 +71,7 @@
                 users.setPassword(hashSPassword);
                 groups.setUsername(s_username);
                 groups.setRole("student");
+                users.setRole("student");
                 studentInfo.setUsername(s_username);
                 studentInfo.setName(s_name);
                 studentInfo.setRollNumber(roll);
@@ -82,6 +88,24 @@
             //users.setPassword(s_password);
             
         %>
-        <h1>Done</h1>
+        <jsp:include page="header.jsp"/>
+
+        <jsp:include page="navigation.jsp"/>
+        
+        <div class="container-fluid">
+        <div class="row" id="contentRow">
+             <jsp:include page="menu.jsp"/>
+            <div class="col-md-10 col-sm-10" id="contentBody">
+
+                <div class="panel-default">
+                    <div class="panel-body">
+                        <h3>Account Created!</h3>
+                    </div>
+                </div>
+            </div>
+        </div>
+        </div>
+            
+         <jsp:include page="footer.jsp"/>
     </body>
 </html>

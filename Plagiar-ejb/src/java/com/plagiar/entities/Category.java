@@ -6,6 +6,7 @@
 package com.plagiar.entities;
 
 import java.io.Serializable;
+import java.math.BigDecimal;
 import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -22,21 +23,18 @@ import javax.xml.bind.annotation.XmlRootElement;
  * @author Saimul
  */
 @Entity
-@Table(name = "DIRECTORY_PLAGIAR")
+@Table(name = "CATEGORY")
 @XmlRootElement
 @NamedQueries({
-    @NamedQuery(name = "DirectoryPlagiar.findAll", query = "SELECT d FROM DirectoryPlagiar d"),
-    @NamedQuery(name = "DirectoryPlagiar.findByCategory", query = "SELECT d FROM DirectoryPlagiar d WHERE d.category = :category"),
-    @NamedQuery(name = "DirectoryPlagiar.findByDepartment", query = "SELECT d FROM DirectoryPlagiar d WHERE d.department = :department"),
-    @NamedQuery(name = "DirectoryPlagiar.findByUniversity", query = "SELECT d FROM DirectoryPlagiar d WHERE d.university = :university"),
-    @NamedQuery(name = "DirectoryPlagiar.findByType", query = "SELECT d FROM DirectoryPlagiar d WHERE d.type = :type")})
-public class DirectoryPlagiar implements Serializable {
+    @NamedQuery(name = "Category.findAll", query = "SELECT c FROM Category c"),
+    @NamedQuery(name = "Category.findByCategory", query = "SELECT c FROM Category c WHERE c.category = :category"),
+    @NamedQuery(name = "Category.findByDepartment", query = "SELECT c FROM Category c WHERE c.department = :department"),
+    @NamedQuery(name = "Category.findByUniversity", query = "SELECT c FROM Category c WHERE c.university = :university"),
+    @NamedQuery(name = "Category.findById", query = "SELECT c FROM Category c WHERE c.id = :id")})
+public class Category implements Serializable {
 
     private static final long serialVersionUID = 1L;
-    @Id
-    @Basic(optional = false)
-    @NotNull
-    @Size(min = 1, max = 50)
+    @Size(max = 50)
     @Column(name = "CATEGORY")
     private String category;
     @Size(max = 100)
@@ -45,15 +43,18 @@ public class DirectoryPlagiar implements Serializable {
     @Size(max = 100)
     @Column(name = "UNIVERSITY")
     private String university;
-    @Size(max = 30)
-    @Column(name = "TYPE")
-    private String type;
+    // @Max(value=?)  @Min(value=?)//if you know range of your decimal fields consider using these annotations to enforce field validation
+    @Id
+    @Basic(optional = false)
+    @NotNull
+    @Column(name = "ID")
+    private BigDecimal id;
 
-    public DirectoryPlagiar() {
+    public Category() {
     }
 
-    public DirectoryPlagiar(String category) {
-        this.category = category;
+    public Category(BigDecimal id) {
+        this.id = id;
     }
 
     public String getCategory() {
@@ -80,29 +81,29 @@ public class DirectoryPlagiar implements Serializable {
         this.university = university;
     }
 
-    public String getType() {
-        return type;
+    public BigDecimal getId() {
+        return id;
     }
 
-    public void setType(String type) {
-        this.type = type;
+    public void setId(BigDecimal id) {
+        this.id = id;
     }
 
     @Override
     public int hashCode() {
         int hash = 0;
-        hash += (category != null ? category.hashCode() : 0);
+        hash += (id != null ? id.hashCode() : 0);
         return hash;
     }
 
     @Override
     public boolean equals(Object object) {
         // TODO: Warning - this method won't work in the case the id fields are not set
-        if (!(object instanceof DirectoryPlagiar)) {
+        if (!(object instanceof Category)) {
             return false;
         }
-        DirectoryPlagiar other = (DirectoryPlagiar) object;
-        if ((this.category == null && other.category != null) || (this.category != null && !this.category.equals(other.category))) {
+        Category other = (Category) object;
+        if ((this.id == null && other.id != null) || (this.id != null && !this.id.equals(other.id))) {
             return false;
         }
         return true;
@@ -110,7 +111,7 @@ public class DirectoryPlagiar implements Serializable {
 
     @Override
     public String toString() {
-        return "com.plagiar.entities.DirectoryPlagiar[ category=" + category + " ]";
+        return "com.plagiar.entities.Category[ id=" + id + " ]";
     }
     
 }

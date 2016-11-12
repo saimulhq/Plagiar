@@ -12,7 +12,7 @@
         <header class="navbar navbar-default navbar-static-top col-md-12 col-sm-12" id="header">
             <div class="container-fluid">
                 <div class="navbar-header">
-                    <h1>Plagiar</h1>
+                    <h1><b>Plagiar</b></h1>
                 </div>
             </div>
         </header>

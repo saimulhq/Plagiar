@@ -1,4 +1,10 @@
 
+<%@ page import="com.plagiar.entities.Department" %>
+<%@ page import="javax.naming.InitialContext" %>
+<%@ page import="java.util.List" %>
+<%@ page import="javax.naming.Context" %>
+<%@ page import="com.plagiar.PlagiarRemote" %>
+<%@ page import="com.plagiar.entities.University" %>
 <%@ page contentType="text/html" pageEncoding="UTF-8" %>
 <!DOCTYPE html>
 <html lang="en">
@@ -24,18 +30,59 @@
 
                     <div class="panel-default">
                         <div class="panel-body">
-                            <h3>Create Category</h3>
+                            <%
+                                PlagiarRemote plagiarRemote = null;
+
+                                try {
+                                    Context context = new InitialContext();
+                                    plagiarRemote = (PlagiarRemote) context.lookup(PlagiarRemote.class.getName());
+
+                                } catch (Exception e) {
+                                    e.printStackTrace();
+                                }
+                                List<University> listAllUniversity = plagiarRemote.getUniversityList();
+                                //String selectedName = null;
+                            %>
+                            <h3>New Category</h3>
                             <form name="createCategory" action="createCategory2.jsp">
-                                University Name: <input name="university" type="text" class="form-control" style="width:300px;"><br/>
-                                Department Name: <input name="department" type="text" class="form-control" style="width:300px;"><br/>
-                                Category Type:  <select name="catType" class="form-control" style="width:300px;">
-                                    <option selected="selected">Please select..</option>
-                                    <option value="Assignment">Assignment</option>
-                                    <option value="Project">Project</option>
-                                    <option value="Thesis">Thesis</option>
+                                Select University: <select id="university" name="university" class="form-control" style="width:300px;">
+                                    <option selected="selected">Please select ...</option>
+                                    <%
+                                        for (University university : listAllUniversity) {
+                                    %><option><%=university.getUniversityName()%></option><%
+                                        }
+                                    %>
                                 </select><br/>
-                                Category Name: <input name="catName" type="text" class="form-control" style="width:300px;"><br/>
-                                <button type="submit" class="btn btn-default">Create</button>
+                              <!--<script>
+                                    $(document).ready(function () {
+                                        $('#university').change(function () {
+                                            $.ajax({
+                                                url: 'GetUserServlet',
+                                                data: {
+                                                    university: $('#university').val()
+                                                },
+                                                success: function (data) {
+                                                    console.log(data);
+                                                }
+                                            });
+                                        });
+                                    });
+
+                                    //var colArray;
+                                </script>-->
+                                <%            //String name = (String) request.getAttribute("text");
+//                                String myVal=null;
+//                                if(name!=null){
+//                                myVal = name;
+//                                System.out.println(myVal);
+//                                }
+//                                List<Department> listDepartmentByUniname = plagiarRemote.getDepartmentListByUniversity(myVal);
+//                                for(Department dept:listDepartmentByUniname){
+//                                    System.out.println(dept.getDepartmentName());
+//                                }
+                                
+%>
+                                <button type="submit" class="btn btn-default">Next</button>
                             </form>
                         </div>
                     </div>

@@ -1,5 +1,7 @@
 
 
+<%@page import="com.plagiar.entities.University"%>
+<%@ page import="com.plagiar.entities.Department" %>
 <%@ page import="com.plagiar.entities.PathsPlagiar" %>
 <%@ page import="com.plagiar.entities.FilesPlagiar" %>
 <%@ page import="java.io.*,java.util.*, javax.servlet.*" %>
@@ -15,102 +17,63 @@
 
 <%@ page contentType="text/html" pageEncoding="UTF-8" %>
 <!DOCTYPE html>
-<html>
+<html lang="en">
     <head>
-        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
         <title>Plagiar</title>
+        <link href="bootstrap/css/bootstrap.min.css" rel="stylesheet">
+        <link href="styles/template.css" rel="stylesheet">
+        <script src="jquery/jquery-1.12.4.min.js"></script>
+        <script src="bootstrap/js/bootstrap.min.js"></script>
         <link rel="shortcut icon" href="favicon.ico" />
     </head>
     <body>
-        <h1>Done!</h1>
+        <jsp:include page="header.jsp"/>
 
-        <%
-            PlagiarRemote plagiarRemote = null;
+        <jsp:include page="navigation.jsp"/>
 
-            try {
-                Context context = new InitialContext();
-                plagiarRemote = (PlagiarRemote) context.lookup(PlagiarRemote.class.getName());
+        <div class="container-fluid">
+            <div class="row" id="contentRow">
+                <jsp:include page="menu.jsp"/>
+                <div class="col-md-10 col-sm-10" id="contentBody">
 
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
-            
-            FilesPlagiar files = new FilesPlagiar();
-            String username = request.getUserPrincipal().getName();
-            PathsPlagiar path1 = plagiarRemote.getDirectoryPath("CatPath");
-            String catPath = path1.getPath();
-            System.out.println("catPath: " + catPath);
-            String category = request.getParameter("category");
-            Calendar calendar = Calendar.getInstance();
-            
-            File file;
-            int maxFileSize = 5000 * 1024;
-            int maxMemSize = 5000 * 1024;
-            //ServletContext context = pageContext.getServletContext();
-            String filePath = catPath + category + "\\";
-            //context.getInitParameter("file-upload");
-            
-            // Verify the content type
-           String contentType = request.getContentType();
-            if ((contentType.indexOf("multipart/form-data") >= 0)) {
 
-                DiskFileItemFactory factory = new DiskFileItemFactory();
-                // maximum size that will be stored in memory
-                factory.setSizeThreshold(maxMemSize);
-                // Location to save data that is larger than maxMemSize.
+                    <div class="panel-default">
+                        <div class="panel-body">
+                            <%
+                                PlagiarRemote plagiarRemote = null;
 
-                PathsPlagiar path2 = plagiarRemote.getDirectoryPath("TempPath");
-                String temp = path2.getPath();
-                System.out.println("tempPath: " + temp);
-                factory.setRepository(new File(temp));
+                                try {
+                                    Context context = new InitialContext();
+                                    plagiarRemote = (PlagiarRemote) context.lookup(PlagiarRemote.class.getName());
 
-                // Create a new file upload handler
-                ServletFileUpload upload = new ServletFileUpload(factory);
-                // maximum file size to be uploaded.
-                upload.setSizeMax(maxFileSize);
-                try {
-                    // Parse the request to get file items.
-                    List fileItems = upload.parseRequest(request);
+                                } catch (Exception e) {
+                                    e.printStackTrace();
+                                }
+                                
+                                String catType = request.getParameter("categoryType");
+                                //System.out.println(title+author+catType+university);
+                                List<University> listAllUniversity = plagiarRemote.getUniversityList();
+                                
+                            %>
+                            <h3>Add File</h3>
+                            <form action="addFile3.jsp?catType=<%=catType%>" method="post">
+                                Selected Submission Type: <input type="text" disabled="disabled" value="<%=catType%>" class="form-control" style="width:300px;"><br/>
+                                Select University: <select name="university" class="form-control" style="width:300px;">
+                                    <option selected="selected">Please select ...</option>
+                                    <% for (University university : listAllUniversity) {
+                                    %><option><%=university.getUniversityName()%></option><%
+                                        }
+                                    %>
+                                </select><br/>
 
-                    // Process the uploaded file items
-                    Iterator i = fileItems.iterator();
-
-                    while (i.hasNext()) {
-                        FileItem fi = (FileItem) i.next();
-                        if (!fi.isFormField()) {
-                            // Get the uploaded file parameters
-                            String fieldName = fi.getFieldName();
-                            String fileName = fi.getName();
-                            boolean isInMemory = fi.isInMemory();
-                            long sizeInBytes = fi.getSize();
-                            // Write the file
-                            if (fileName.lastIndexOf("\\") >= 0) {
-                                file = new File(filePath
-                                        + fileName.substring(fileName.lastIndexOf("\\")));
-                            } else {
-                                file = new File(filePath
-                                        + fileName.substring(fileName.lastIndexOf("\\") + 1));
-                            }
-                            fi.write(file);
-                            System.out.println("Uploaded Filename: " + filePath + fileName);
-                            String fullpath = filePath + fileName;
-                            System.out.println(fullpath);
-                            files.setCategory(category);
-                            files.setFilelocation(fullpath);
-                            files.setAddedby(username);
-                            files.setFilename(fileName);
-                            System.out.println(username + " " + calendar.getTime());
-                            files.setTimeadded(calendar.getTime());
-                            plagiarRemote.addFilesInDatabase(files);
-                        }
-                    }
-
-                } catch (Exception ex) {
-                    System.out.println(ex);
-                }
-            } else {
-                System.out.println("No file uploaded");
-            }
-        %>
+                                <a class="btn btn-default" href="checkPlagiarism.jsp">Back</a> <button type="submit" class="btn btn-default">Next</button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <jsp:include page="footer.jsp"/>
     </body>
 </html>

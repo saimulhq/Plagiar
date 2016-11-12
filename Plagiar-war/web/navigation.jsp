@@ -1,5 +1,5 @@
-<%@page import="com.plagiar.entities.TeacherInfo"%>
-<%@page import="com.plagiar.entities.StudentInfo"%>
+<%@ page import="com.plagiar.entities.TeacherInfo" %>
+<%@ page import="com.plagiar.entities.StudentInfo" %>
 <%@ page import="javax.naming.InitialContext" %>
 <%@ page import="javax.naming.Context" %>
 <%@ page import="javax.naming.Context" %>
@@ -30,16 +30,16 @@
             Users users = plagiarRemote.getUserRole(username);
             
             String role = users.getRole();
-            System.out.println(role);
+            //System.out.println(role);
             
             if (role.equals("student")) {
                 StudentInfo studentInfo = plagiarRemote.getStudentInfo(username);
                 name = studentInfo.getName();
-                System.out.println(name);
+                //System.out.println(name);
             } else if (role.equals("teacher")) {
                 TeacherInfo teacherInfo = plagiarRemote.getTeacherInfo(username);
                 name = teacherInfo.getName();
-                System.out.println();
+                //System.out.println();
             } else {
                 name = "Admin";
             }

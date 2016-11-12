@@ -12,7 +12,7 @@
     <body>
         <jsp:include page="header.jsp"/>
         <div class="container">    
-            <div id="loginbox" style="margin-top:120px;height: 450px;" class="mainbox col-md-6 col-md-offset-3 col-sm-8 col-sm-offset-2">                    
+            <div id="loginbox" style="margin-top:120px;height: 453px;" class="mainbox col-md-6 col-md-offset-3 col-sm-8 col-sm-offset-2">                    
                 <div class="panel panel-info" >
                     <div class="panel-heading">
                         <div class="panel-title">Sign In</div>
@@ -23,7 +23,7 @@
                         <form id="loginform" class="form-horizontal" role="form" action="j_security_check" method="POST">
                             <div style="margin-bottom: 25px" class="input-group">
                                 <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
-                                <input id="login-username" type="text" class="form-control" name="j_username" placeholder="email">                                        
+                                <input id="login-username" type="email" class="form-control" name="j_username" placeholder="email">                                        
                             </div>
 
                             <div style="margin-bottom: 25px" class="input-group">

@@ -51,7 +51,7 @@
             <tbody>
                 <% 
                     for(FilesPlagiar files:listAllFiles){ %>
-                    <tr><td><a href="fileDownload.jsp?fileLocation=<%=files.getFilelocation()%>&filename=<%=files.getFilename()%>"><%=files.getFilename()%></a></td><td><%=files.getAddedby()%></td><td><%=files.getTimeadded()%></td></tr>
+                    <tr><td><a href="fileDownload.jsp?fileLocation=<%=files.getFilelocation()%>&filename=<%=files.getFilename()%>" style="text-decoration: none;"><%=files.getFilename()%></a></td><td><%=files.getAddedby()%></td><td><%=files.getTimeadded()%></td></tr>
                 <% } %>
             </tbody>
         </table>

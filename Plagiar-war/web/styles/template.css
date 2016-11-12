@@ -3,6 +3,7 @@ html, body {
     width: 100%; 
     margin: auto;
     overflow-x: hidden;
+    overflow-y: auto;
 }
 
 #header {
@@ -38,19 +39,23 @@ html, body {
     padding-right: 0%;
     background-color: gainsboro;
     /*color: #23527c;*/
-    height: 523px;
+    /*height: 523px;*/
 }
 
 #contentRow {
     padding-top: 0%;
 }
 
-#contentBody {
-    height:523px;
+#contentBody, .container-fluid, .span9 {
+    /*height:523px;*/
+    overflow-y:auto;
+    height:100%;
 }
 
 .footer {
     text-align: center;
     color: white;
     background-color: #23527c;
+    line-height: 230%;
+    height: 5%;
 }
