@@ -1,17 +1,10 @@
-<%@page import="com.plagiar.entities.Category"%>
+<%@page import="java.util.List"%>
+<%@ page import="com.plagiar.entities.Category" %>
 <%@ page import="javax.naming.InitialContext" %>
 <%@ page import="javax.naming.Context" %>
 <%@ page import="com.plagiar.PlagiarRemote" %>
-<%@ page import="com.plagiar.entities.PathsPlagiar" %>
-<%@ page import="com.plagiar.entities.FilesPlagiar" %>
-<%@ page import="java.io.*,java.util.*, javax.servlet.*" %>
-<%@ page import="javax.servlet.http.*" %>
-<%@ page import="org.apache.commons.fileupload.*" %>
-<%@ page import="org.apache.commons.fileupload.disk.*" %>
-<%@ page import="org.apache.commons.fileupload.servlet.*" %>
-<%@ page import="org.apache.commons.io.output.*" %>
 
-<%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%@ page contentType="text/html" pageEncoding="UTF-8" %>
 <!DOCTYPE html>
 <html lang="en">
     <head>
@@ -43,16 +36,15 @@
                             e.printStackTrace();
                         }
                         String university=request.getParameter("uni");
-                        String catType= request.getParameter("catType");
                         String dept = request.getParameter("department");
+                        
                         List<Category> listCategory = plagiarRemote.getCategoryListByUniversityAndDepartment(university, dept);
                 %>
 
                 <div class="panel-default">
                     <div class="panel-body">
-                        <h3>Add File</h3>
-                        <form action="addFile5.jsp?uni=<%=university%>&dept=<%=dept%>&catType=<%=catType%>" method="post">
-                            Selected Submission Type: <input type="text" disabled="disabled" value="<%=catType%>" class="form-control" style="width:300px;"><br/>
+                        <h3>Search</h3>
+                        <form action="searchCategoryT4.jsp?uni=<%=university%>&dept=<%=dept%>" method="post">
                             Selected University: <input type="text" disabled="disabled" value="<%=university%>" class="form-control" style="width:300px;"><br/>
                             Selected Department: <input type="text" disabled="disabled" value="<%=dept%>" class="form-control" style="width:300px;"><br/>
                             Select Category: <select name="category" class="form-control" style="width:300px;">
@@ -63,7 +55,7 @@
                                         }
                                     %>
                                 </select><br/>
-                                <a class="btn btn-default" href="addFile3.jsp?university=<%=university%>&catType=<%=catType%>">Back</a> <button type="submit" class="btn btn-default">Next</button>
+                                <a class="btn btn-default" href="searchCategoryT2.jsp?university=<%=university%>">Back</a> <button type="submit" class="btn btn-default">Search</button>
                         </form>
                     </div>
                 </div>

@@ -1,4 +1,6 @@
 
+<%@ page import="com.plagiar.entities.Category" %>
+<%@ page import="com.plagiar.entities.Department" %>
 <%@ page import="com.plagiar.entities.University" %>
 <%@ page import="java.util.List" %>
 <%@ page import="javax.naming.InitialContext" %>
@@ -29,8 +31,11 @@
             } catch (Exception e) {
                 e.printStackTrace();
             }
-
-            List<University> listAllUniversity = plagiarRemote.getUniversityList();
+            
+            String university = request.getParameter("uni");
+            String dept =request.getParameter("dept");
+            
+            List<Category> listAllCategory = plagiarRemote.getCategoryListByUniversityAndDepartment(university, dept);
         %>
 
         <jsp:include page="header.jsp"/>
@@ -49,16 +54,16 @@
 
                             <table class="table table-bordered">
                                 <thead>
-                                <th>List of Universities</th>
+                                <th>List of Categories</th>
                                 </thead>
                                 <tbody>
                                     <%
-                                        for (University uni : listAllUniversity) {%>
-                                        <tr><td><a href="viewRepository2.jsp?uni=<%=uni.getUniversityName()%>" style="text-decoration: none;"><%=uni.getUniversityName()%></a></td></tr>
+                                        for (Category cat : listAllCategory) {%>
+                                        <tr><td><a href="viewFilesT.jsp?uni=<%=university%>&dept=<%=dept%>&category=<%=cat.getCategory()%>" style="text-decoration: none;"><%=cat.getCategory()%></a></td></tr>
                                             <% }%>
                                 </tbody>
                             </table>
-                                <a class="btn btn-default" href="view.jsp">Back</a>
+                                <a class="btn btn-default" href="viewRepositoryT2.jsp?uni=<%=university%>">Back</a>
                         </div>
                     </div>
                 </div>

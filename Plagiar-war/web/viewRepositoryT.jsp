@@ -54,11 +54,11 @@
                                 <tbody>
                                     <%
                                         for (University uni : listAllUniversity) {%>
-                                        <tr><td><a href="viewRepository2.jsp?uni=<%=uni.getUniversityName()%>" style="text-decoration: none;"><%=uni.getUniversityName()%></a></td></tr>
+                                        <tr><td><a href="viewRepositoryT2.jsp?uni=<%=uni.getUniversityName()%>" style="text-decoration: none;"><%=uni.getUniversityName()%></a></td></tr>
                                             <% }%>
                                 </tbody>
                             </table>
-                                <a class="btn btn-default" href="view.jsp">Back</a>
+                                <a class="btn btn-default" href="viewT.jsp">Back</a>
                         </div>
                     </div>
                 </div>

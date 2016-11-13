@@ -48,7 +48,7 @@
         %>
         <table class="table table-bordered">
             <thead>
-            <th>File Name</th><th>Title</th><th>Document Type</th><th>Added By</th><th>Time Added</th>
+            <th>File Name</th><th>Title</th><th>Document Type</th><th>Added By</th><th>Time Added</th><th></th>
             </thead>
             <tbody>
                 <% 
@@ -58,7 +58,8 @@
                     <tr>
                         <td><a href="fileDownload.jsp?fileLocation=<%=files.getFilelocation()%>&filename=<%=files.getFilename()%>" style="text-decoration: none;"><%=files.getFilename()%></a></td>
                         <td><%=files.getTitle()%></td><td><%=files.getCategoryType()%></td><td><%=files.getAddedby()%></td><td><%=files.getTimeadded()%></td>
-                    <%recordAvailable = true;%>
+                        <td><a href="deleteFile.jsp?fileLocation=<%=files.getFilelocation()%>&filename=<%=files.getFilename()%>" style="text-decoration: none;color:red;">Delete</a></td>
+                        <%recordAvailable = true;%>
                     </tr>
                <%
                         i++;
@@ -71,7 +72,7 @@
             </tbody>
         </table>
             Total results found: <%=i%><br/><br/>
-            <a class="btn btn-default" href="viewRepository3.jsp?uni=<%=university%>&dept=<%=department%>">Back</a>
+            <a class="btn btn-default" href="viewRepositoryT3.jsp?uni=<%=university%>&dept=<%=department%>">Back</a>
                     </div>
                 </div>
             </div>

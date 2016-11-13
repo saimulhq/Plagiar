@@ -127,15 +127,56 @@ public class Plagiar implements PlagiarRemote {
             }
         }
     }
+    
+    @Override
+    public List<FilesPlagiar> search(String title) {
+            String baseQuery = "select * from files_plagiar where filename is not null";
 
-//    @Override
-//    public List<DirectoryPlagiar> getDirectoryList() {
-//        return em.createNativeQuery("select * from directory_plagiar order by category asc", DirectoryPlagiar.class).getResultList();
-//    }
+        if (title != "") {
+            String array[]=title.split(" ");
+            baseQuery = baseQuery + " and";
+            for(String search:array){
+                baseQuery = baseQuery + " lower(title) like '%" + search + "%' or";
+            }
+            baseQuery = baseQuery + " lower(title)='true'";
+        }
+
+        return em.createNativeQuery(baseQuery, FilesPlagiar.class).getResultList();
+    }
+    
+    @Override
+    public List<FilesPlagiar> searchCategory(String uni, String dept, String searchCat) {
+            String baseQuery = "select * from files_plagiar where filename is not null";
+
+        if (uni != "") {
+            baseQuery = baseQuery + " and university='" + uni + "'";
+        }
+        
+        if (dept != "") {
+            baseQuery = baseQuery + " and department='" + dept + "'";
+        }
+        
+        if (searchCat != "") {
+            baseQuery = baseQuery + " and category='" + searchCat + "'";
+        }
+
+        return em.createNativeQuery(baseQuery, FilesPlagiar.class).getResultList();
+    }
+    
+    @Override
+    public List<FilesPlagiar> searchDocument(String type) {
+            String baseQuery = "select * from files_plagiar where filename is not null";
+
+        if (type != "") {
+            baseQuery = baseQuery + " and category_type='" + type + "'";
+        }
+        
+        return em.createNativeQuery(baseQuery, FilesPlagiar.class).getResultList();
+    }
 
     @Override
-    public List<FilesPlagiar> getFilesList(String category) {
-        return em.createNativeQuery("select * from files_plagiar where category=?1", FilesPlagiar.class).setParameter(1, category).getResultList();
+    public List<FilesPlagiar> getFilesList(String uni, String dept, String cat) {
+        return em.createNativeQuery("select * from files_plagiar where university=?1 and department=?2 and category=?3", FilesPlagiar.class).setParameter(1, uni).setParameter(2, dept).setParameter(3, cat).getResultList();
     }
     
     @Override
@@ -172,22 +213,14 @@ public class Plagiar implements PlagiarRemote {
     public List<Category> getCategoryList() {
         return em.createNativeQuery("select * from category order by category asc", Category.class).getResultList();
     }
-
-//    @Override
-//    public University checkUniInDb(String university) {
-//        try {
-//            return (University) em.createNativeQuery("select * from university where university_name=?1", University.class).setParameter(1, university).getSingleResult();
-//        } catch (NoResultException e) {
-//            return null;
-//        }
-////        try{
-////            System.out.println("testing....");
-////            return null;
-////        }catch(NullPointerException nl){
-//            
-//        }
-
     
+    @Override
+    public void deleteFile(String fileName, String fileLocation) {
+        String query = "delete from files_plagiar where filename=?1";
+        em.createNativeQuery(query).setParameter(1, fileName).executeUpdate();
+        File file = new File(fileLocation);
+        file.delete();
+    }
     
     @Override
     public void generateCosineSimilarity(String t1, String t2) throws IOException {

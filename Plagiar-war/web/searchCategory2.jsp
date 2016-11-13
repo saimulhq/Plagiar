@@ -1,7 +1,7 @@
 
-<%@page import="com.plagiar.entities.Department"%>
-<%@page import="com.plagiar.entities.Category"%>
-<%@page import="java.util.List"%>
+<%@ page import="com.plagiar.entities.Department" %>
+<%@ page import="com.plagiar.entities.Category" %>
+<%@ page import="java.util.List" %>
 <%@ page import="javax.naming.InitialContext" %>
 <%@ page import="javax.naming.Context" %>
 <%@ page import="com.plagiar.PlagiarRemote" %>
@@ -37,17 +37,14 @@
                             e.printStackTrace();
                         }
                         String university=request.getParameter("university");
-                        String catType= request.getParameter("catType");
-                        //System.out.println(dept);
                         List<Department> listDepartmentByUniname = plagiarRemote.getDepartmentListByUniversity(university);
                         
                     %>
 
                     <div class="panel-default">
                         <div class="panel-body">
-                            <h3>Add File</h3>
-                            <form action="addFile4.jsp?uni=<%=university%>&catType=<%=catType%>" method="post">
-                            Selected Submission Type: <input type="text" disabled="disabled" value="<%=catType%>" class="form-control" style="width:300px;"><br/>
+                            <h3>Search</h3>
+                            <form action="searchCategory3.jsp?uni=<%=university%>" method="post">
                             Selected University: <input type="text" disabled="disabled" value="<%=university%>" class="form-control" style="width:300px;"><br/>
                             Select Department: <select name="department" class="form-control" style="width:300px;">
                                     <option selected="selected">Please select ...</option>
@@ -58,7 +55,7 @@
                                     %>
                                 </select><br/>
                             
-                                <a class="btn btn-default" href="addFile2.jsp?categoryType=<%=catType%>">Back</a> <button type="submit" class="btn btn-default">Next</button>
+                                <a class="btn btn-default" href="searchCategory.jsp">Back</a> <button type="submit" class="btn btn-default">Next</button>
                         </form>
                             
                         </div>

@@ -55,12 +55,20 @@ public interface PlagiarRemote {
     public Users getUserRole(String username);
 
     public void createDirectory(String serverPath, String university, String department, String category);
+    
+    public List<FilesPlagiar> search(String name);
+    
+    public List<FilesPlagiar> searchCategory(String uni, String dept, String searchCat);
+    
+    public List<FilesPlagiar> searchDocument(String type);
 
     //public List<DirectoryPlagiar> getDirectoryList();
     
     public void addFilesInDatabase(FilesPlagiar files);
     
-    public List<FilesPlagiar> getFilesList(String category);
+    public List<FilesPlagiar> getFilesList(String uni, String dept, String cat);
+    
+    public void deleteFile(String fileName, String fileLocation);
     
     public PathsPlagiar getDirectoryPath(String pathname);
     

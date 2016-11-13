@@ -1,11 +1,11 @@
 
-<%@page import="com.plagiar.entities.PathsPlagiar"%>
-<%@page import="javax.naming.InitialContext"%>
-<%@page import="javax.naming.Context"%>
-<%@page import="com.plagiar.PlagiarRemote"%>
-<%@page import="com.plagiar.entities.Category"%>
-<%@page import="java.util.List"%>
-<%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%@ page import="com.plagiar.entities.PathsPlagiar" %>
+<%@ page import="javax.naming.InitialContext" %>
+<%@ page import="javax.naming.Context" %>
+<%@ page import="com.plagiar.PlagiarRemote" %>
+<%@ page import="com.plagiar.entities.Category" %>
+<%@ page import="java.util.List" %>
+<%@ page contentType="text/html" pageEncoding="UTF-8" %>
 <!DOCTYPE html>
 <html lang="en">
     <head>

@@ -38,10 +38,7 @@
                         String university=request.getParameter("uni");
                         System.out.println(university);
                         String dept = request.getParameter("department");
-//                        String title =request.getParameter("title");
-//                        String author = request.getParameter("author");
-//                        String catType= request.getParameter("catType");
-//                        System.out.println(dept);
+
                         List<Category> listCategory = plagiarRemote.getCategoryListByUniversityAndDepartment(university, dept);
                         
                     %>
@@ -60,7 +57,7 @@
                                         }
                                     %>
                                 </select><br/>
-                                <a class="btn btn-default" href="checkPlagiarism2.jsp">Back</a> <button type="submit" class="btn btn-default">Next</button> 
+                                <a class="btn btn-default" href="checkPlagiarism2.jsp?university=<%=university%>">Back</a> <button type="submit" class="btn btn-default">Next</button> 
                         </form>
                             
                         </div>

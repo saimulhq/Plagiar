@@ -37,7 +37,9 @@
             <ul class="nav nav-stacked">
                 <li><a href="home.jsp" style="color:#23527c; border-top:0px;margin:0px;" onMouseOver="this.style.color = 'blue'" onMouseOut="this.style.color = '#23527c'"><b>Home</b></a></li>
                 <li><a href="addFile.jsp" style="color:#23527c; border:0px;" onMouseOver="this.style.color = 'blue'" onMouseOut="this.style.color = '#23527c'"><b>Add File</b></a></li>
+                <li><a href="view.jsp" style="color:#23527c; border:0px;" onMouseOver="this.style.color = 'blue'" onMouseOut="this.style.color = '#23527c'"><b>View</b></a></li>
                 <li><a href="checkPlagiarism.jsp" style="color:#23527c; border:0px;" onMouseOver="this.style.color = 'blue'" onMouseOut="this.style.color = '#23527c'"><b>Check Plagiarism</b></a></li>
+                
             </ul>
         </div>
         <% } else if (role.equals("teacher")) {
@@ -52,6 +54,7 @@
                     <li><a href="createCategory.jsp" class="list-group-item" style="background-color: gainsboro; border:0px; color:#23527c; padding-left:15%;" onMouseOver="this.style.color = 'blue';this.style.backgroundColor = '#EEEEEE';" onMouseOut="this.style.color = '#23527c';this.style.backgroundColor = 'gainsboro';"><b>Category</b></a></li>
                 </div>
                 <li><a href="addFile.jsp" style="color:#23527c; border:0px;" onMouseOver="this.style.color = 'blue'" onMouseOut="this.style.color = '#23527c'"><b>Add File</b></a></li>
+                <li><a href="viewT.jsp" style="color:#23527c; border-top:0px;margin:0px;" onMouseOver="this.style.color = 'blue'" onMouseOut="this.style.color = '#23527c'"><b>View</b></a></li>
                 <li><a href="checkPlagiarism.jsp" style="color:#23527c; border:0px;" onMouseOver="this.style.color = 'blue'" onMouseOut="this.style.color = '#23527c'"><b>Check Plagiarism</b></a></li>
             </ul>
         </div>

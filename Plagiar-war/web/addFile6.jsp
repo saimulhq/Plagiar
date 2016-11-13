@@ -59,7 +59,7 @@
                             Author: <input type="text" name="author" class="form-control" style="width: 300px;"/><br/>
                             Published year: <input name="year" type="text" class="form-control" style="width:300px;"><br/>
                             Upload File: <input type="file" name="file" accept=".pdf" class="form-control" style="width:300px;"><br/>
-                             <a class="btn btn-default" href="checkPlagiarism.jsp">Back</a> <button type="submit" class="btn btn-default">Add</button>
+                            <a class="btn btn-default" href="addFile5.jsp?uni=<%=university%>&dept=<%=dept%>&category=<%=category%>&catType=<%=catType%>">Back</a> <button type="submit" class="btn btn-default">Add</button>
                         </form>
                             
                         </div>

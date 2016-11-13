@@ -1,26 +1,27 @@
 
-<%@page import="com.plagiar.entities.University"%>
-<%@page import="java.util.List"%>
-<%@page import="javax.naming.InitialContext"%>
-<%@page import="javax.naming.Context"%>
-<%@page import="com.plagiar.PlagiarRemote"%>
+<%@ page import="java.util.List" %>
+<%@ page import="com.plagiar.entities.University" %>
+<%@ page import="javax.naming.InitialContext" %>
+<%@ page import="javax.naming.Context" %>
+<%@ page import="javax.naming.Context" %>
+<%@ page import="com.plagiar.PlagiarRemote" %>
+
 <%@ page contentType="text/html" pageEncoding="UTF-8" %>
 <!DOCTYPE html>
 <html lang="en">
     <head>
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <title>Plagiar</title>
-        <link rel="shortcut icon" href="favicon.ico" />
         <link href="bootstrap/css/bootstrap.min.css" rel="stylesheet">
         <link href="styles/template.css" rel="stylesheet">
         <script src="jquery/jquery-1.12.4.min.js"></script>
         <script src="bootstrap/js/bootstrap.min.js"></script>
+        <link rel="shortcut icon" href="favicon.ico" />
     </head>
     <body>
         <jsp:include page="header.jsp"/>
 
         <jsp:include page="navigation.jsp"/>
-
 
         <div class="container-fluid">
             <div class="row" id="contentRow">
@@ -30,7 +31,6 @@
 
                     <div class="panel-default">
                         <div class="panel-body">
-                            <h3>Add File</h3>
                             <%
                                 PlagiarRemote plagiarRemote = null;
 
@@ -42,17 +42,20 @@
                                     e.printStackTrace();
                                 }
                                 
-                            %>
-                            <form action="addFile2.jsp">
-                                Select submission type: <select name="categoryType" class="form-control" style="width: 300px;">
-                                    <option selected="selected">Please select ...</option>
-                                    <option>Assignment</option>
-                                    <option>Project</option>
-                                    <option>Thesis</option>
-                                </select><br/>
+                                List<University> listAllUniversity = plagiarRemote.getUniversityList();
                                 
+                            %>
+                            <h3>Search</h3>
+                            <form action="searchCategory2.jsp" method="post">
+                                Select University: <select name="university" class="form-control" style="width:300px;">
+                                    <option selected="selected">Please select ...</option>
+                                    <% for (University university : listAllUniversity) {
+                                    %><option><%=university.getUniversityName()%></option><%
+                                        }
+                                    %>
+                                </select><br/>
 
-                                <button type="submit" class="btn btn-default">Next</button>
+                                <a class="btn btn-default" href="view.jsp">Back</a> <button type="submit" class="btn btn-default">Next</button>
                             </form>
                         </div>
                     </div>

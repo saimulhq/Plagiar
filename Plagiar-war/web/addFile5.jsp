@@ -62,7 +62,7 @@
                                     %>
                                 </select><br/>
                             
-                            <a class="btn btn-default" href="checkPlagiarism.jsp">Back</a> <button type="submit" class="btn btn-default">Next</button>
+                                <a class="btn btn-default" href="addFile4.jsp?uni=<%=university%>&department=<%=dept%>&catType=<%=catType%>">Back</a> <button type="submit" class="btn btn-default">Next</button>
                         </form>
                             
                         </div>

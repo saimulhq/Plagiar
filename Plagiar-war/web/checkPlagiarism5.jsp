@@ -1,3 +1,5 @@
+<%@page import="java.math.RoundingMode"%>
+<%@page import="java.text.DecimalFormat"%>
 <%@ page import="org.apache.tika.Tika" %>
 <%@ page import="java.io.*,java.util.*, javax.servlet.*" %>
 <%@ page import="javax.servlet.http.*" %>
@@ -13,7 +15,7 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
         <title>Plagiar</title>
         <link rel="shortcut icon" href="favicon.ico" />
         <link href="bootstrap/css/bootstrap.min.css" rel="stylesheet">
@@ -33,6 +35,11 @@
 
                     <div class="panel-default">
                         <h3>Check Plagiarism</h3>
+                        <table class="table table-bordered">
+                            <thead>
+                            <th>File-1</th><th>File-2</th><th>Plagiarism Detected</th>
+                            </thead>
+                            <tbody>
                         <%
                             PlagiarRemote plagiarRemote = null;
 
@@ -148,12 +155,21 @@
                                 text[i] = tika.parseToString(f);
                                 //System.out.println(text[i]);
                                 plagiarRemote.generateCosineSimilarity(text1, text[i]);;
-                                double similarity = plagiarRemote.getCosineSimilarity();
+                                double similarity = plagiarRemote.getCosineSimilarity()*100;
+                                DecimalFormat df = new DecimalFormat("#.##");
+                                df.setRoundingMode(RoundingMode.CEILING);
+                                //double testsample=0.98675;
+                                //System.out.println(df.format(testsample));
                         %>
-                        <p>Cosine Similarity between: <%=f1.getName()%> and <%=f.getName()%>: <%=similarity%><p>
+                        <tr>
+                            <td><%=f1.getName()%></td><td><%=f.getName()%></td><td><%=df.format(similarity)%>%</td>
                             <%
                                 }
                             %>
+                            </tr>
+                            </tbody>
+                        </table>
+                        <a class="btn btn-default" href="checkPlagiarism4.jsp?uni=<%=university%>&dept=<%=dept%>&category=<%=category%>">Back</a>
                         <div class="panel-body">
                         </div>
                     </div>

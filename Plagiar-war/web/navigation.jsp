@@ -47,7 +47,7 @@
         %>
         <nav class="navbar navbar-default" id="navigation">
             <ul class="nav navbar-nav navbar-left">
-                <li id="navUsername"><a href="#" style="color: white; font-weight: bold;">User: <%=name%></a></li>
+                <li id="navUsername"><a href="#" style="color: white; font-weight: bold;"><span class="glyphicon glyphicon-user"></span> User: <%=name%></a></li>
             </ul>
             <ul class="nav navbar-nav navbar-right">
                 <li id="navLogout"><a href="/Plagiar-war/logout" style="color: white; font-weight: bold;" onMouseOver="this.style.color='red';this.style.backgroundColor='gainsboro';" onMouseOut="this.style.color='white';this.style.backgroundColor='#23527c';"><span class="glyphicon glyphicon-log-out"></span> Logout</a></li>

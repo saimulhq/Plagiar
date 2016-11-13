@@ -1,4 +1,5 @@
 
+<%@ page import="com.plagiar.entities.Department" %>
 <%@ page import="com.plagiar.entities.University" %>
 <%@ page import="java.util.List" %>
 <%@ page import="javax.naming.InitialContext" %>
@@ -29,8 +30,10 @@
             } catch (Exception e) {
                 e.printStackTrace();
             }
-
-            List<University> listAllUniversity = plagiarRemote.getUniversityList();
+            
+            String university = request.getParameter("uni");
+            
+            List<Department> listAllDepartments = plagiarRemote.getDepartmentListByUniversity(university);
         %>
 
         <jsp:include page="header.jsp"/>
@@ -49,16 +52,16 @@
 
                             <table class="table table-bordered">
                                 <thead>
-                                <th>List of Universities</th>
+                                <th>List of Departments</th>
                                 </thead>
                                 <tbody>
                                     <%
-                                        for (University uni : listAllUniversity) {%>
-                                        <tr><td><a href="viewRepository2.jsp?uni=<%=uni.getUniversityName()%>" style="text-decoration: none;"><%=uni.getUniversityName()%></a></td></tr>
+                                        for (Department dept : listAllDepartments) {%>
+                                        <tr><td><a href="viewRepository3.jsp?uni=<%=university%>&dept=<%=dept.getDepartmentName()%>" style="text-decoration: none;"><%=dept.getDepartmentName()%></a></td></tr>
                                             <% }%>
                                 </tbody>
                             </table>
-                                <a class="btn btn-default" href="view.jsp">Back</a>
+                                <a class="btn btn-default" href="viewRepository.jsp">Back</a>
                         </div>
                     </div>
                 </div>

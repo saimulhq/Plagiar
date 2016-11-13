@@ -13,7 +13,7 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
         <title>Plagiar</title>
         <link rel="shortcut icon" href="favicon.ico" />
         <link href="bootstrap/css/bootstrap.min.css" rel="stylesheet">
@@ -48,7 +48,7 @@
                         Department: <input name="inputDept" type="text" class="form-control" style="width:300px;"><br/>
                         Year: <input name="year" type="text" class="form-control" style="width:300px;"><br/>
                         Upload File: <input type="file" name="file" accept=".pdf" class="form-control" style="width:300px;"><br/>
-                        <a class="btn btn-default" href="checkPlagiarism3.jsp">Back</a> <button type="submit" class="btn btn-default">Check</button> 
+                        <a class="btn btn-default" href="checkPlagiarism3.jsp?uni=<%=uni%>&department=<%=dept%>">Back</a> <button type="submit" class="btn btn-default">Check</button> 
                         </form>
                         <div class="panel-body">
                         </div>
