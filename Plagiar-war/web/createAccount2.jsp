@@ -31,7 +31,6 @@
             try {
                 Context context = new InitialContext();
                 plagiarRemote = (PlagiarRemote) context.lookup(PlagiarRemote.class.getName());
-                //List<MenuItd> listx = itdr.getMenuByUsername(name);
             } catch (Exception e) {
                 e.printStackTrace();
             }

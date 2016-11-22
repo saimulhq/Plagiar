@@ -86,11 +86,11 @@
                                     document.add(newline);
                                     document.add(new Paragraph("Input Document Information", defaultFont));
 
-                                    PdfPTable table = new PdfPTable(2); // 3 columns.
-                                    table.setWidthPercentage(100); //Width 100%
-                                    table.setSpacingBefore(10f); //Space before table
-                                    table.setSpacingAfter(10f); //Space after table
-                                    //Set Column widths
+                                    PdfPTable table = new PdfPTable(2); 
+                                    table.setWidthPercentage(100); 
+                                    table.setSpacingBefore(10f); 
+                                    table.setSpacingAfter(10f); 
+                                    
                                     float[] columnWidths = {1f, 1f};
                                     table.setWidths(columnWidths);
 
@@ -130,12 +130,12 @@
 
                                     document.add(new Paragraph("Plagiarism Detection Information", defaultFont));
 
-                                    PdfPTable table2 = new PdfPTable(6); // 3 columns.
+                                    PdfPTable table2 = new PdfPTable(4); // 3 columns.
                                     table2.setWidthPercentage(100); //Width 100%
                                     table2.setSpacingBefore(10f); //Space before table
                                     table2.setSpacingAfter(10f); //Space after table
                                     //Set Column widths
-                                    float[] columnWidths2 = {1f, 1f, 1f, 1f, 1f, 1f};
+                                    float[] columnWidths2 = {1f, 1f, 1f, 1f};
                                     table2.setWidths(columnWidths2);
 
                                     Paragraph tablehead1 = new Paragraph("Title", boldFont2);
@@ -144,11 +144,11 @@
                                     Paragraph tablehead2 = new Paragraph("Author", boldFont2);
                                     PdfPCell newcell2 = new PdfPCell(tablehead2);
 
-                                    Paragraph tablehead3 = new Paragraph("Department", boldFont2);
+                                    /*Paragraph tablehead3 = new Paragraph("Department", boldFont2);
                                     PdfPCell newcell3 = new PdfPCell(tablehead3);
 
                                     Paragraph tablehead4 = new Paragraph("University", boldFont2);
-                                    PdfPCell newcell4 = new PdfPCell(tablehead4);
+                                    PdfPCell newcell4 = new PdfPCell(tablehead4);*/
 
                                     Paragraph tablehead5 = new Paragraph("Year", boldFont2);
                                     PdfPCell newcell5 = new PdfPCell(tablehead5);
@@ -158,8 +158,8 @@
 
                                     table2.addCell(newcell);
                                     table2.addCell(newcell2);
-                                    table2.addCell(newcell3);
-                                    table2.addCell(newcell4);
+                                    //table2.addCell(newcell3);
+                                    //table2.addCell(newcell4);
                                     table2.addCell(newcell5);
                                     table2.addCell(newcell6);
 

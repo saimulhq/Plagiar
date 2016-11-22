@@ -225,7 +225,7 @@ public class Plagiar implements PlagiarRemote {
             String array[]=title.split(" ");
             baseQuery = baseQuery + " and";
             for(String search:array){
-                baseQuery = baseQuery + " lower(title) like '%" + search + "%' or";
+                baseQuery = baseQuery + " lower(title) like '%" + search.toLowerCase() + "%' or";
             }
             baseQuery = baseQuery + " lower(title)='true'";
         }

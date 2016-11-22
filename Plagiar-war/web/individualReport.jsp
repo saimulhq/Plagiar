@@ -131,12 +131,12 @@
 
                                     document.add(new Paragraph("Archive Document Information", defaultFont));
 
-                                    PdfPTable table2 = new PdfPTable(5); // 3 columns.
+                                    PdfPTable table2 = new PdfPTable(3); // 3 columns.
                                     table2.setWidthPercentage(100); //Width 100%
                                     table2.setSpacingBefore(10f); //Space before table
                                     table2.setSpacingAfter(10f); //Space after table
                                     //Set Column widths
-                                    float[] columnWidths2 = {1f, 1f, 1f, 1f, 1f};
+                                    float[] columnWidths2 = {1f, 1f, 1f};
                                     table2.setWidths(columnWidths2);
 
                                     //Font boldFont2 = FontFactory.getFont(FontFactory.TIMES_BOLD, 12);
@@ -148,38 +148,38 @@
                                     PdfPCell tablecell3 = new PdfPCell(tablehead2);
                                     PdfPCell tablecell4 = new PdfPCell(new Paragraph("" + values.get(1), defaultFont));
 
-                                    Paragraph tablehead3 = new Paragraph("Department", boldFont2);
+                                    /*Paragraph tablehead3 = new Paragraph("Department", boldFont2);
                                     PdfPCell tablecell5 = new PdfPCell(tablehead3);
                                     PdfPCell tablecell6 = new PdfPCell(new Paragraph("" + values.get(2), defaultFont));
 
                                     Paragraph tablehead4 = new Paragraph("University", boldFont2);
                                     PdfPCell tablecell7 = new PdfPCell(tablehead4);
-                                    PdfPCell tablecell8 = new PdfPCell(new Paragraph("" + values.get(3), defaultFont));
+                                    PdfPCell tablecell8 = new PdfPCell(new Paragraph("" + values.get(3), defaultFont));*/
 
                                     Paragraph tablehead5 = new Paragraph("Year", boldFont2);
                                     PdfPCell tablecell9 = new PdfPCell(tablehead5);
-                                    PdfPCell tablecell10 = new PdfPCell(new Paragraph("" + values.get(4), defaultFont));
+                                    PdfPCell tablecell10 = new PdfPCell(new Paragraph("" + values.get(2), defaultFont));
 
                                     table2.addCell(tablecell1);
                                     table2.addCell(tablecell3);
-                                    table2.addCell(tablecell5);
-                                    table2.addCell(tablecell7);
+                                    //table2.addCell(tablecell5);
+                                    //table2.addCell(tablecell7);
                                     table2.addCell(tablecell9);
                                     table2.addCell(tablecell2);
                                     table2.addCell(tablecell4);
-                                    table2.addCell(tablecell6);
-                                    table2.addCell(tablecell8);
+                                    //table2.addCell(tablecell6);
+                                    //table2.addCell(tablecell8);
                                     table2.addCell(tablecell10);
 
                                     document.add(table2);
 
                                     document.add(new Paragraph("Plagiarism Detection Detailed Information", defaultFont));
 
-                                    PdfPTable table3 = new PdfPTable(4); // 3 columns.
-                                    table3.setWidthPercentage(100); //Width 100%
-                                    table3.setSpacingBefore(10f); //Space before table
-                                    table3.setSpacingAfter(10f); //Space after table
-                                    //Set Column widths
+                                    PdfPTable table3 = new PdfPTable(4); 
+                                    table3.setWidthPercentage(100); 
+                                    table3.setSpacingBefore(10f); 
+                                    table3.setSpacingAfter(10f); 
+                                    
                                     float[] columnWidths1 = {1f, 1f, 1f, 1f};
                                     table3.setWidths(columnWidths1);
 

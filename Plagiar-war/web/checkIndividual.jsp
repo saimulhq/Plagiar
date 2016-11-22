@@ -60,8 +60,6 @@
                                 String uni = request.getParameter("uni");
                                 String year = request.getParameter("year");
 
-                                PlagiarRemote plagiarRemote = null;
-
                                 List<String> individualResults = new ArrayList<String>();
                                 List<String> values = (List<String>) request.getSession().getAttribute("valueslist");
                                 for (int i = 0; i < values.size(); i++) {
@@ -79,6 +77,7 @@
                                     </tbody>
                                 </table>
                                 <%
+                                PlagiarRemote plagiarRemote = null;
                                 try {
                                     Context context = new InitialContext();
                                     plagiarRemote = (PlagiarRemote) context.lookup(PlagiarRemote.class.getName());
@@ -91,6 +90,7 @@
                                 plagiarRemote.splitFile2(file2);
 
                                 Tika tika = new Tika();
+                                tika.setMaxStringLength(200000);
                                 String text[] = new String[100];
                                 String text2[] = new String[100];
                                 PathsPlagiar tempPath1 = plagiarRemote.getDirectoryPath("SplitDirPath1");

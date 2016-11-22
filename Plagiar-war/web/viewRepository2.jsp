@@ -74,9 +74,9 @@
                     <div class="panel-default">
                         <div class="panel-body">
                            
-                            <h3>View Repository</h3>
                             <div class="panel panel-default" style="background-color: ghostwhite;">
                                 <div class="container-fluid">
+                                    <h3>View Repository</h3>
                             <table class="table table-bordered" id="view">
                                 <thead>
                                 <th>List of Departments</th>

@@ -78,8 +78,8 @@
             String value = null;
             String fullPath = null;
             String fileName;
-            int maxFileSize = 5000 * 1024;
-            int maxMemSize = 5000 * 1024;
+            int maxFileSize = 10000 * 1024;
+            int maxMemSize = 10000 * 1024;
             //ServletContext context = pageContext.getServletContext();
             String filePath;
 

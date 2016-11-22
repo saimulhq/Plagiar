@@ -109,8 +109,8 @@
                                     List<String> values = new ArrayList<String>();
                                     String value = null;
                                     String fullPath = null;
-                                    int maxFileSize = 5000 * 1024;
-                                    int maxMemSize = 5000 * 1024;
+                                    int maxFileSize = 10000 * 1024;
+                                    int maxMemSize = 10000 * 1024;
                                     //ServletContext context = pageContext.getServletContext();
                                     String filePath = subPath + "\\";
                                     //context.getInitParameter("file-upload");
@@ -195,6 +195,7 @@
                                     File f1 = new File(fullPath);
                                     //File f2 = new File("G:\\Lucene\\testDataText\\2.txt");
                                     Tika tika = new Tika();
+                                    tika.setMaxStringLength(10*1024*1024);
                                     String text1 = tika.parseToString(f1);
 
                                     PathsPlagiar path3 = plagiarRemote.getDirectoryPath("CatPath");
@@ -233,8 +234,8 @@
                                         fp.getPublishedYear();
                                         listValues.add(fp.getTitle());
                                         listValues.add(fp.getAuthor());
-                                        listValues.add(fp.getDepartment());
-                                        listValues.add(fp.getUniversity());
+//                                        listValues.add(fp.getDepartment());
+//                                        listValues.add(fp.getUniversity());
                                         listValues.add(fp.getPublishedYear());
                                         listValues.add(df.format(similarity)+"%");
                                         
@@ -277,7 +278,7 @@
                                         request.getSession().setAttribute("unilist",listUnis);
                                         request.getSession().setAttribute("yearlist",listYears);*/
                                     %>
-                                    <a class="btn btn-default" href="checkPlagiarism5.jsp?uni=<%=university%>&dept=<%=dept%>&category=<%=category%>&catType=<%=catType%>">Back</a> 
+                                    <a class="btn btn-default" href="checkPlagiarism5.jsp?uni=<%=university%>&dept=<%=dept%>&category=<%=category%>&catType=<%=catType%>">Back</a>
                                     <%if(hideButton==false){%>
                                     <a class="btn btn-default" href="generateReport.jsp?title=<%=inputTitle%>&author=<%=inputAuthor%>&dept=<%=inputDepartment%>&uni=<%=inputUniversity%>&year=<%=inputYear%>">Generate Report</a><br><br>
                                     <%}%>
