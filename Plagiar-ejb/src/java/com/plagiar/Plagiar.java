@@ -429,8 +429,6 @@ public class Plagiar implements PlagiarRemote {
         BytesRef text = null;
         while ((text = termsEnum.next()) != null) {
             String term = text.utf8ToString();
-            //System.out.println(text.utf8ToString());
-            //strings.add(text.utf8ToString());
             int freq = (int) termsEnum.totalTermFreq();
             frequencies.put(term, freq);
             terms.add(term);
@@ -502,4 +500,5 @@ public class Plagiar implements PlagiarRemote {
         }
         return null;
     }
+    
 }
