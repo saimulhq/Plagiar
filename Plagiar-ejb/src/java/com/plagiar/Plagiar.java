@@ -403,30 +403,6 @@ public class Plagiar implements PlagiarRemote {
         return directory;
     }
 
-    private void getMatchWords(Map m1, Map m2) {
-        Iterator it = m1.entrySet().iterator();
-        String key;
-        while (it.hasNext()) {
-            Map.Entry pair = (Map.Entry) it.next();
-            
-            if ((String) pair.getKey() != null) {
-                key = (String) pair.getKey();
-            } else {
-                key = "";
-            }
-            int flag = 0;
-            try {
-                flag = (int) m2.get(key);
-            } catch (Exception e) {
-        
-            }
-            if (flag > 0) {
-                System.out.println(pair.getKey());
-            }
-            it.remove();
-        }
-    }
-
     public void addDocument(IndexWriter writer, String fileContent) throws IOException {
         Document doc = new Document();
         FieldType fieldType = new FieldType();
@@ -477,7 +453,33 @@ public class Plagiar implements PlagiarRemote {
         }
         return vector;
     }
+    
+    private void getMatchWords(Map m1, Map m2) {
+        Iterator it = m1.entrySet().iterator();
+        String key;
+        while (it.hasNext()) {
+            Map.Entry pair = (Map.Entry) it.next();
+            
+            if ((String) pair.getKey() != null) {
+                key = (String) pair.getKey();
+            } else {
+                key = "";
+            }
+            int flag = 0;
+            try {
+                flag = (int) m2.get(key);
+            } catch (Exception e) {
+        
+            }
+            if (flag > 0) {
+                System.out.println(pair.getKey());
+            }
+            it.remove();
+        }
+    }
 
+
+    
     @Override
     public String generateHashPassword(String password) {
         try {
