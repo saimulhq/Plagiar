@@ -175,12 +175,12 @@
 
                                     document.add(new Paragraph("Plagiarism Detection Detailed Information", defaultFont));
 
-                                    PdfPTable table3 = new PdfPTable(5); // 3 columns.
+                                    PdfPTable table3 = new PdfPTable(4); // 3 columns.
                                     table3.setWidthPercentage(100); //Width 100%
                                     table3.setSpacingBefore(10f); //Space before table
                                     table3.setSpacingAfter(10f); //Space after table
                                     //Set Column widths
-                                    float[] columnWidths1 = {1f, 1f, 1f, 1f, 1f};
+                                    float[] columnWidths1 = {1f, 1f, 1f, 1f};
                                     table3.setWidths(columnWidths1);
 
                                     PdfPCell cell[] = new PdfPCell[1000];

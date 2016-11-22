@@ -160,12 +160,12 @@
                     limit = mulArr.length;
                 }
                 for(int i=0;i<limit;i++){
-                %>Input Page-<%=(int)mulArr[i][1]%> --> Archive Page-<%=(int)mulArr[i][2]%> [Similar] [<%=df.format(mulArr[i][0])%>%]<br/><%
+                %>Input Page-<%=(int)mulArr[i][1]%> --> Archive Page-<%=(int)mulArr[i][2]%> [Similar]<br/><%
                 individualResults.add("Input Page-" + (int)mulArr[i][1]);
                 individualResults.add("-->");
                 individualResults.add("Archive Page-" + (int)mulArr[i][2]);
                 individualResults.add("[Similar]");
-                individualResults.add("[" + df.format(mulArr[i][0]) + "%" + "]");
+                //individualResults.add("[" + df.format(mulArr[i][0]) + "%" + "]");
 }
 
     request.getSession().setAttribute("individualResults", individualResults);

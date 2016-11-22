@@ -485,12 +485,17 @@ public class Plagiar implements PlagiarRemote {
     public RealVector toRealVector(Map<String, Integer> map) {
         RealVector vector = new ArrayRealVector(terms.size());
         int i = 0;
+        int value;
         for (String term : terms) {
-            int value = map.containsKey(term) ? map.get(term) : 0;
+            if(map.containsKey(term)){
+                value=map.get(term);
+            }
+            else{
+                value=0;
+            }
             vector.setEntry(i++, value);
         }
         return vector;
-        //return (RealVector) vector.mapDivide(vector.getL1Norm());
     }
 
     @Override
