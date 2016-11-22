@@ -1,3 +1,4 @@
+<%@ page import="com.plagiar.entities.Users" %>
 <%@ page import="javax.naming.InitialContext" %>
 <%@ page import="javax.naming.Context" %>
 <%@ page import="com.plagiar.PlagiarRemote" %>
@@ -21,6 +22,13 @@
         <script src="jquery/jquery-1.12.4.min.js"></script>
         <script src="bootstrap/js/bootstrap.min.js"></script>
         <link rel="shortcut icon" href="favicon.ico" />
+        <style>
+            #contentBody, .container-fluid {
+                /*height:523px;*/
+                overflow-y:auto;
+                height:77%;
+            }
+        </style>
     </head>
     <body>
         <jsp:include page="header.jsp"/>
@@ -36,7 +44,12 @@
             } catch (Exception e) {
                 e.printStackTrace();
             }
+            
+            String name = request.getUserPrincipal().getName();
+            Users users = plagiarRemote.getUserRole(name);
 
+            String role = users.getRole();
+            
             String university = request.getParameter("uni");
             System.out.println(university);
             String dept = request.getParameter("dept");
@@ -53,7 +66,13 @@
             String category = request.getParameter("category");
             Calendar calendar = Calendar.getInstance();
             String pubYear;
-            String teacher = request.getParameter("teacher");
+            String teacher;
+            if(role.equals("student")){
+                teacher = request.getParameter("teacher");
+            }
+            else {
+                teacher="N/A";
+            }
             File file;
             List<String> values = new ArrayList<String>();
             String value = null;
@@ -98,7 +117,7 @@
                     title = values.get(0);
                     author = values.get(1);
                     pubYear = values.get(2);
-                    filePath = catPath + university + "\\" + dept + "\\" + category + "\\";
+                    filePath = catPath + university + "\\" + dept + "\\" + category + "\\" + catType + "\\";
 
                     // Process the uploaded file items
                     Iterator i = fileItems.iterator();
@@ -156,7 +175,11 @@
 
                 <div class="panel-default">
                     <div class="panel-body">
+                        <div class="panel panel-default" style="background-color: ghostwhite;">
+                            <div class="container-fluid">
                         <h3>File Added!</h3>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>

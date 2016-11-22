@@ -1,7 +1,7 @@
 html, body { 
     height: 100%; 
     width: 100%; 
-    margin: auto;
+    /*margin: auto;*/
     overflow-x: hidden;
     overflow-y: auto;
 }
@@ -46,11 +46,11 @@ html, body {
     padding-top: 0%;
 }
 
-#contentBody, .container-fluid, .span9 {
-    /*height:523px;*/
+/*#contentBody, .container-fluid {
+    height:523px;
     overflow-y:auto;
     height:100%;
-}
+}*/
 
 .footer {
     text-align: center;

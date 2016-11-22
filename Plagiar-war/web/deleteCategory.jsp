@@ -1,5 +1,8 @@
 
-<%@ page contentType="text/html" pageEncoding="UTF-8" %>
+<%@page import="javax.naming.InitialContext"%>
+<%@page import="javax.naming.Context"%>
+<%@page import="com.plagiar.PlagiarRemote"%>
+<%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html lang="en">
     <head>
@@ -10,15 +13,6 @@
         <script src="jquery/jquery-1.12.4.min.js"></script>
         <script src="bootstrap/js/bootstrap.min.js"></script>
         <link rel="shortcut icon" href="favicon.ico" />
-        <script>
-            function validate(){
-            var x = document.forms["searchForm"]["titleSearch"].value;
-            if (x === "") {
-                    alert("You must enter a keyword!");
-                    return false;
-                }
-            }
-        </script>
         <style>
             #contentBody, .container-fluid {
                 /*height:523px;*/
@@ -28,7 +22,6 @@
         </style>
     </head>
     <body>
-        
         <jsp:include page="header.jsp"/>
 
         <jsp:include page="navigation.jsp"/>
@@ -43,12 +36,28 @@
                         <div class="panel-body">
                             <div class="panel panel-default" style="background-color: ghostwhite;">
                             <div class="container-fluid">
-                            <h3>Search</h3>
-                            <form name="searchForm" action="searchTitle2.jsp">
-                                Search by Title: <input type="text" name="titleSearch" class="form-control" style="width:500px" required/><br/>
-                                
-                                <a class="btn btn-default" href="view.jsp">Back</a> <button type="submit" class="btn btn-default" onclick="return validate();">Search</button><br><br>
-                            </form>
+                            <h3>Category Deleted!</h3>
+                            <%
+                                PlagiarRemote plagiarRemote = null;
+
+                                try {
+                                    Context context = new InitialContext();
+                                    plagiarRemote = (PlagiarRemote) context.lookup(PlagiarRemote.class.getName());
+
+                                } catch (Exception e) {
+                                    e.printStackTrace();
+                                }
+
+                                String uni = request.getParameter("uni");
+                                String dept = request.getParameter("dept");
+                                String category = request.getParameter("category");
+                                System.out.println(uni);
+                                System.out.println(dept);
+                                System.out.println(category);
+
+                                plagiarRemote.deleteCategoryFromCategoryTable(uni, dept, category);
+                                plagiarRemote.deleteCategoryFromFilesTable(uni, dept, category);
+                            %>
                             </div>
                             </div>
                         </div>
@@ -56,6 +65,8 @@
                 </div>
             </div>
         </div>
+
+
         <jsp:include page="footer.jsp"/>
     </body>
 </html>

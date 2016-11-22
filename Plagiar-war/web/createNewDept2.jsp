@@ -15,6 +15,13 @@
         <link href="styles/template.css" rel="stylesheet">
         <script src="jquery/jquery-1.12.4.min.js"></script>
         <script src="bootstrap/js/bootstrap.min.js"></script>
+        <style>
+            #contentBody, .container-fluid {
+                /*height:523px;*/
+                overflow-y:auto;
+                height:77%;
+            }
+        </style>
     </head>
     <body>
         <jsp:include page="header.jsp"/>
@@ -25,7 +32,13 @@
             <div class="row" id="contentRow">
                 <jsp:include page="menu.jsp"/>
                 <div class="col-md-10 col-sm-10" id="contentBody">
-                    <%
+                    
+
+                    <div class="panel-default">
+                        <div class="panel-body">
+                            <div class="panel panel-default" style="background-color: ghostwhite;">
+                            <div class="container-fluid">
+                            <%
                         PlagiarRemote plagiarRemote = null;
 
                         try {
@@ -44,7 +57,7 @@
                         for (Department dept : listAllDept) {
                             if (dept.getDepartmentName().equals(deptName) && dept.getUniversityName().equals(uniName)) {
                     %><h3>Department Already Exists!!!</h3> <br/><br/>
-                    <a href="createNewDept.jsp">Try Again...</a>
+                    <a href="createNewDept.jsp">Try Again...</a><br/><br/>
                     <%
                                 flag = 1;
                             }
@@ -61,9 +74,8 @@
 
 
                     %>
-
-                    <div class="panel-default">
-                        <div class="panel-body">
+                        </div>
+                            </div>
                         </div>
                     </div>
                 </div>

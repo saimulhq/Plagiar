@@ -16,6 +16,22 @@
         <script src="jquery/jquery-1.12.4.min.js"></script>
         <script src="bootstrap/js/bootstrap.min.js"></script>
         <link rel="shortcut icon" href="favicon.ico" />
+        <style>
+            #contentBody, .container-fluid {
+                /*height:523px;*/
+                overflow-y:auto;
+                height:77%;
+            }
+        </style>
+        <script>
+            function validate(){
+            var x = document.forms["searchCategory"]["department"].value;
+            if (x === "") {
+                    alert("You must select the department!");
+                    return false;
+                }
+            }
+        </script>
     </head>
     <body>
         <jsp:include page="header.jsp"/>
@@ -43,21 +59,24 @@
 
                     <div class="panel-default">
                         <div class="panel-body">
+                            <div class="panel panel-default" style="background-color: ghostwhite;">
+                                <div class="container-fluid">
                             <h3>Search</h3>
-                            <form action="searchCategory3.jsp?uni=<%=university%>" method="post">
+                            <form name="searchCategory" action="searchCategory3.jsp?uni=<%=university%>" method="post">
                             Selected University: <input type="text" disabled="disabled" value="<%=university%>" class="form-control" style="width:300px;"><br/>
                             Select Department: <select name="department" class="form-control" style="width:300px;">
-                                    <option selected="selected">Please select ...</option>
+                                    <option value="">Please select ...</option>
                                     <%
                                         for (Department department : listDepartmentByUniname) {
-                                    %><option><%=department.getDepartmentName()%></option><%
+                                    %><option value="<%=department.getDepartmentName()%>"><%=department.getDepartmentName()%></option><%
                                         }
                                     %>
                                 </select><br/>
                             
-                                <a class="btn btn-default" href="searchCategory.jsp">Back</a> <button type="submit" class="btn btn-default">Next</button>
+                                <a class="btn btn-default" href="searchCategory.jsp">Back</a> <button type="submit" class="btn btn-default" onclick="return validate();">Next</button><br><br>
                         </form>
-                            
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>

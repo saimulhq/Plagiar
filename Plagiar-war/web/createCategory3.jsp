@@ -16,6 +16,13 @@
         <link href="styles/template.css" rel="stylesheet">
         <script src="jquery/jquery-1.12.4.min.js"></script>
         <script src="bootstrap/js/bootstrap.min.js"></script>
+        <style>
+            #contentBody, .container-fluid {
+                /*height:523px;*/
+                overflow-y:auto;
+                height:77%;
+            }
+        </style>
     </head>
     <body>
         <%
@@ -50,11 +57,13 @@
 
                     <div class="panel-default">
                         <div class="panel-body">
+                            <div class="panel panel-default" style="background-color: ghostwhite;">
+                            <div class="container-fluid">
                             <%                            int flag = 0;
                                 for (Category parseCategory : listAllCategories) {
                                     if (parseCategory.getCategory().equals(cat) && parseCategory.getDepartment().equals(dept) && parseCategory.getUniversity().equals(university)) {
                             %><h3>Category Already Exists!!!</h3> <br/><br/>
-                            <a href="createCategory.jsp">Try Again...</a><%
+                            <a href="createCategory.jsp">Try Again...</a><br/><br/><%
                                         flag = 1;
                                     }
                                 }
@@ -70,6 +79,8 @@
                                 %><h3>Category Added!</h3><%
                                 }
                             %>
+                        </div>
+                            </div>
                         </div>
                     </div>
                 </div>

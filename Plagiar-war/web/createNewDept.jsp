@@ -16,6 +16,13 @@
         <link href="styles/template.css" rel="stylesheet">
         <script src="jquery/jquery-1.12.4.min.js"></script>
         <script src="bootstrap/js/bootstrap.min.js"></script>
+        <style>
+            #contentBody, .container-fluid {
+                /*height:523px;*/
+                overflow-y:auto;
+                height:77%;
+            }
+        </style>
     </head>
     <body>
         <%
@@ -42,6 +49,8 @@
 
                     <div class="panel-default">
                         <div class="panel-body">
+                            <div class="panel panel-default" style="background-color: ghostwhite;">
+                            <div class="container-fluid">
                             <h3>New Department</h3>
                             <form name="createDept" action="createNewDept2.jsp">
                                 
@@ -54,8 +63,10 @@
                                     %>
                                 </select><br/>
                                 Department Name: <input name="department" type="text" class="form-control" style="width:300px;"><br/>  
-                                <button type="submit" class="btn btn-default">Create</button>
+                                <button type="submit" class="btn btn-default">Create</button><br><br>
                             </form>
+                            </div>
+                            </div>
                         </div>
                     </div>
                 </div>

@@ -16,6 +16,30 @@
         <link href="bootstrap/css/bootstrap.min.css" rel="stylesheet">
         <script src="jquery/jquery-1.12.4.min.js"></script>
         <script src="bootstrap/js/bootstrap.min.js"></script>
+        <script type="text/javascript" src="javascripts/paging.js"></script>
+        <style>
+            .pg-normal {
+                color: #23527c;
+                font-weight: normal;
+                text-decoration: none;    
+                cursor: pointer;    
+            }
+            .pg-selected {
+                color: #E3106D;
+                font-weight: bold;        
+                text-decoration: underline;
+                cursor: pointer;
+            }
+            .pg-normal:hover{
+                background-color:#23527c;
+                color: white;
+            }
+            #contentBody, .container-fluid {
+                /*height:523px;*/
+                overflow-y:auto;
+                height:77%;
+            }
+        </style>
     </head>
     <body>
 
@@ -45,20 +69,31 @@
 
                     <div class="panel-default">
                         <div class="panel-body">
-                            <h3>View Repository</h3>
+                            <div class="panel panel-default" style="background-color: ghostwhite;">
+                                <div class="container-fluid">
+                                    <h3>View Repository</h3>
 
-                            <table class="table table-bordered">
-                                <thead>
-                                <th>List of Universities</th>
-                                </thead>
-                                <tbody>
-                                    <%
+                                    <table class="table table-bordered" id="university">
+                                        <thead>
+                                        <th>List of Universities</th>
+                                        </thead>
+                                        <tbody>
+                                            <%
                                         for (University uni : listAllUniversity) {%>
                                         <tr><td><a href="viewRepository2.jsp?uni=<%=uni.getUniversityName()%>" style="text-decoration: none;"><%=uni.getUniversityName()%></a></td></tr>
-                                            <% }%>
-                                </tbody>
-                            </table>
-                                <a class="btn btn-default" href="view.jsp">Back</a>
+                                                    <% }%>
+                                        </tbody>
+                                    </table>
+                                        <div id="pageNavPosition" align="center"></div>
+                                    <script type="text/javascript">
+                                        var pager = new Pager('university', 9);
+                                        pager.init();
+                                        pager.showPageNav('pager', 'pageNavPosition');
+                                        pager.showPage(1);
+                                    </script>
+                                    <a class="btn btn-default" href="view.jsp">Back</a><br><br>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>

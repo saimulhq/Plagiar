@@ -16,21 +16,30 @@
         <link href="styles/template.css" rel="stylesheet">
         <script src="jquery/jquery-1.12.4.min.js"></script>
         <script src="bootstrap/js/bootstrap.min.js"></script>
+        <style>
+            #contentBody, .container-fluid {
+                /*height:523px;*/
+                overflow-y:auto;
+                height:77%;
+            }
+        </style>
     </head>
     <body>
         <jsp:include page="header.jsp"/>
 
         <jsp:include page="navigation.jsp"/>
-
+        
         <div class="container-fluid">
-            <div class="row" id="contentRow">
-                <jsp:include page="menu.jsp"/>
-                <div class="col-md-10 col-sm-10" id="contentBody">
+        <div class="row" id="contentRow">
+             <jsp:include page="menu.jsp"/>
+            <div class="col-md-10 col-sm-10" id="contentBody">
 
 
-                    <div class="panel-default">
-                        <div class="panel-body">
-                            <%
+                <div class="panel-default">
+                    <div class="panel-body">
+                        <div class="panel panel-default" style="background-color: ghostwhite;">
+                            <div class="container-fluid">
+                                <%
                                 PlagiarRemote plagiarRemote = null;
 
                                 try {
@@ -53,7 +62,7 @@
                                 for (University uni : listAllUni) {
                                     if (uni.getUniversityName().equals(uniName)) {
                             %><h3>University Already exists!</h3><br/><br/>
-                            <a href="createNewUni.jsp">Try again...</a>
+                            <a href="createNewUni.jsp">Try again...</a><br><br>
                             <%
                                         flag = 1;
                                     }
@@ -72,11 +81,14 @@
                         }
 
                             %>
+                                </div>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
+        </div>
+
         <jsp:include page="footer.jsp"/>
     </body>
 </html>

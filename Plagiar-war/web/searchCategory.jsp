@@ -17,6 +17,22 @@
         <script src="jquery/jquery-1.12.4.min.js"></script>
         <script src="bootstrap/js/bootstrap.min.js"></script>
         <link rel="shortcut icon" href="favicon.ico" />
+        <style>
+            #contentBody, .container-fluid {
+                /*height:523px;*/
+                overflow-y:auto;
+                height:77%;
+            }
+        </style>
+        <script>
+            function validate(){
+            var x = document.forms["searchCategory"]["university"].value;
+            if (x === "") {
+                    alert("You must select the university!");
+                    return false;
+                }
+            }
+        </script>
     </head>
     <body>
         <jsp:include page="header.jsp"/>
@@ -31,6 +47,8 @@
 
                     <div class="panel-default">
                         <div class="panel-body">
+                            <div class="panel panel-default" style="background-color: ghostwhite;">
+                                <div class="container-fluid">
                             <%
                                 PlagiarRemote plagiarRemote = null;
 
@@ -46,17 +64,19 @@
                                 
                             %>
                             <h3>Search</h3>
-                            <form action="searchCategory2.jsp" method="post">
+                            <form name="searchCategory" action="searchCategory2.jsp" method="post">
                                 Select University: <select name="university" class="form-control" style="width:300px;">
-                                    <option selected="selected">Please select ...</option>
+                                    <option value="">Please select ...</option>
                                     <% for (University university : listAllUniversity) {
-                                    %><option><%=university.getUniversityName()%></option><%
+                                    %><option value="<%=university.getUniversityName()%>"><%=university.getUniversityName()%></option><%
                                         }
                                     %>
                                 </select><br/>
 
-                                <a class="btn btn-default" href="view.jsp">Back</a> <button type="submit" class="btn btn-default">Next</button>
+                                <a class="btn btn-default" href="view.jsp">Back</a> <button type="submit" class="btn btn-default" onclick="return validate();">Next</button><br><br>
                             </form>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>

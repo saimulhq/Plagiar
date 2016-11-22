@@ -15,6 +15,22 @@
         <link href="styles/template.css" rel="stylesheet">
         <script src="jquery/jquery-1.12.4.min.js"></script>
         <script src="bootstrap/js/bootstrap.min.js"></script>
+        <style>
+            #contentBody, .container-fluid {
+                /*height:523px;*/
+                overflow-y:auto;
+                height:77%;
+            }
+        </style>
+        <script>
+            function validate(){
+            var x = document.forms["check"]["categoryType"].value;
+            if (x === "") {
+                    alert("You must select the category type!");
+                    return false;
+                }
+            }
+        </script>
     </head>
     <body>
         <jsp:include page="header.jsp"/>
@@ -30,6 +46,8 @@
 
                     <div class="panel-default">
                         <div class="panel-body">
+                            <div class="panel panel-default" style="background-color: ghostwhite;">
+                                <div class="container-fluid">
                             <h3>Check Plagiarism</h3>
                             <%
                                 PlagiarRemote plagiarRemote = null;
@@ -41,31 +59,31 @@
                                 } catch (Exception e) {
                                     e.printStackTrace();
                                 }
-                                List<University> listAllUniversity = plagiarRemote.getUniversityList();
 
                                 //String category = request.getParameter("category");
                                 //System.out.println("category name: "+category);
 
                             %>
-                            <form action="checkPlagiarism2.jsp">
+                            <form name="check" action="checkPlagiarism2.jsp">
                                 <!--Select category type: <select name="categoryType" class="form-control" style="width: 300px;">
                                     <option selected="selected">Please select ...</option>
                                     <option>Assignment</option>
                                     <option>Project</option>
                                     <option>Thesis</option>
                                 </select><br/>-->
-                                Select University: <select name="university" class="form-control" style="width:300px;">
-                                    <option selected="selected">Please select ...</option>
-                                    <%                                        for (University university : listAllUniversity) {
-                                    %><option><%=university.getUniversityName()%></option><%
-                                        }
-                                    %>
+                                Select category type: <select name="categoryType" class="form-control" style="width: 300px;" required>
+                                    <option value="">Please select ...</option>
+                                    <option value="Assignment">Assignment</option>
+                                    <option value="Project">Project</option>
+                                    <option value="Thesis">Thesis</option>
                                 </select><br/>
+                                
 
-                                <!--<input type="file" name="file" accept=".pdf" multiple="multiple"/>
-                                <br />-->
-                                <button type="submit" class="btn btn-default">Next</button>
+                                
+                                <button type="submit" class="btn btn-default" onclick="return validate();">Next</button><br><br>
                             </form>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>

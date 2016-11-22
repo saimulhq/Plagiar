@@ -1,29 +1,19 @@
 
-<%@page import="com.plagiar.entities.University"%>
-<%@page import="java.util.List"%>
+<%@page import="com.plagiar.entities.Users"%>
 <%@page import="javax.naming.InitialContext"%>
 <%@page import="javax.naming.Context"%>
 <%@page import="com.plagiar.PlagiarRemote"%>
-<%@ page contentType="text/html" pageEncoding="UTF-8" %>
+<%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
-<html lang="en">
+<html>
     <head>
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <title>Plagiar</title>
-        <link rel="shortcut icon" href="favicon.ico" />
         <link href="bootstrap/css/bootstrap.min.css" rel="stylesheet">
         <link href="styles/template.css" rel="stylesheet">
         <script src="jquery/jquery-1.12.4.min.js"></script>
         <script src="bootstrap/js/bootstrap.min.js"></script>
-        <script>
-            function validate(){
-            var x = document.forms["addFile"]["categoryType"].value;
-            if (x === "") {
-                    alert("You must select the submission type!");
-                    return false;
-                }
-            }
-        </script>
+        <link rel="shortcut icon" href="favicon.ico" />
         <style>
             #contentBody, .container-fluid {
                 /*height:523px;*/
@@ -37,7 +27,6 @@
 
         <jsp:include page="navigation.jsp"/>
 
-
         <div class="container-fluid">
             <div class="row" id="contentRow">
                 <jsp:include page="menu.jsp"/>
@@ -47,38 +36,40 @@
                     <div class="panel-default">
                         <div class="panel-body">
                             <div class="panel panel-default" style="background-color: ghostwhite;">
-                            <div class="container-fluid">
-                            <h3>Add File</h3>
+                                <div class="container-fluid">
+                            <h3>Password Updated Successfully!</h3>
                             <%
                                 PlagiarRemote plagiarRemote = null;
 
                                 try {
                                     Context context = new InitialContext();
                                     plagiarRemote = (PlagiarRemote) context.lookup(PlagiarRemote.class.getName());
-
                                 } catch (Exception e) {
                                     e.printStackTrace();
                                 }
-                                
-                            %>
-                            <form name="addFile" action="addFile2.jsp">
-                                Select submission type: <select name="categoryType" class="form-control" style="width: 300px;" required>
-                                    <option value="">Please select ...</option>
-                                    <option value="Assignment">Assignment</option>
-                                    <option value="Project">Project</option>
-                                    <option value="Thesis">Thesis</option>
-                                </select><br/>
-                                
 
-                                <button type="submit" class="btn btn-default" onclick="return validate();" style="">Next</button><br/><br/>
-                            </form>
-                            </div>
+                                String username = request.getUserPrincipal().getName();
+
+                                Users users = plagiarRemote.getUserPassword(username);
+                                String role = users.getRole();
+
+                                String newPassword = request.getParameter("newPassword");
+                                String newHashPassword = plagiarRemote.generateHashPassword(newPassword);
+
+                                users = new Users();
+                                users.setUsername(username);
+                                users.setPassword(newHashPassword);
+                                users.setRole(role);
+                                plagiarRemote.changePassword(users);
+                            %>
+                                </div>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
+
         <jsp:include page="footer.jsp"/>
     </body>
 </html>

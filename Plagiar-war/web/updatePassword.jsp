@@ -1,5 +1,5 @@
 
-<%@ page contentType="text/html" pageEncoding="UTF-8" %>
+<%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html lang="en">
     <head>
@@ -9,7 +9,6 @@
         <link href="styles/template.css" rel="stylesheet">
         <script src="jquery/jquery-1.12.4.min.js"></script>
         <script src="bootstrap/js/bootstrap.min.js"></script>
-        <script type="text/javascript" src="javascripts/paging.js"></script>
         <link rel="shortcut icon" href="favicon.ico" />
         <style>
             #contentBody, .container-fluid {
@@ -20,9 +19,9 @@
         </style>
         <script>
             function validate(){
-            var x = document.forms["search"]["type"].value;
+            var x = document.forms["passwordForm"]["inputPassword"].value;
             if (x === "") {
-                    alert("You must select the document type!");
+                    alert("You must enter the existing password!");
                     return false;
                 }
             }
@@ -30,7 +29,7 @@
     </head>
     <body>
         <jsp:include page="header.jsp"/>
-
+        
         <jsp:include page="navigation.jsp"/>
 
         <div class="container-fluid">
@@ -38,22 +37,15 @@
                 <jsp:include page="menu.jsp"/>
                 <div class="col-md-10 col-sm-10" id="contentBody">
 
-
                     <div class="panel-default">
                         <div class="panel-body">
                             <div class="panel panel-default" style="background-color: ghostwhite;">
                                 <div class="container-fluid">
-                                    <h3>Search</h3>
-                                    <form name="search" action="searchDocument2.jsp" method="post">
-                                        Select Document Type: <select name="type" class="form-control" style="width:300px;">
-                                            <option value="">Please select ...</option>
-                                            <option value="Assignment">Assignment</option>
-                                            <option value="Project">Project</option>
-                                            <option value="Thesis">Thesis</option>
-                                        </select><br/>
-
-                                        <a class="btn btn-default" href="view.jsp">Back</a> <button type="submit" class="btn btn-default" onclick="return validate();">Next</button><br><br>
-                                    </form>
+                            <h3>Update Password</h3>
+                            <form name="passwordForm" action="updatePassword2.jsp" method="post">
+                                Enter existing password:<input type="password" name="inputPassword" class="form-control" style="width:300px;"><br/>
+                                <button type="submit" class="btn btn-default" onclick="return validate();">Submit</button><br><br>
+                            </form>
                                 </div>
                             </div>
                         </div>
@@ -61,6 +53,7 @@
                 </div>
             </div>
         </div>
+
         <jsp:include page="footer.jsp"/>
     </body>
 </html>

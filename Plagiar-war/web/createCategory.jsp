@@ -16,6 +16,13 @@
         <link href="styles/template.css" rel="stylesheet">
         <script src="jquery/jquery-1.12.4.min.js"></script>
         <script src="bootstrap/js/bootstrap.min.js"></script>
+        <style>
+            #contentBody, .container-fluid {
+                /*height:523px;*/
+                overflow-y:auto;
+                height:77%;
+            }
+        </style>
     </head>
     <body>
         <jsp:include page="header.jsp"/>
@@ -30,6 +37,8 @@
 
                     <div class="panel-default">
                         <div class="panel-body">
+                            <div class="panel panel-default" style="background-color: ghostwhite;">
+                            <div class="container-fluid">
                             <%
                                 PlagiarRemote plagiarRemote = null;
 
@@ -41,7 +50,6 @@
                                     e.printStackTrace();
                                 }
                                 List<University> listAllUniversity = plagiarRemote.getUniversityList();
-                                //String selectedName = null;
                             %>
                             <h3>New Category</h3>
                             <form name="createCategory" action="createCategory2.jsp">
@@ -82,8 +90,10 @@
 //                                }
                                 
 %>
-                                <button type="submit" class="btn btn-default">Next</button>
+                            <button type="submit" class="btn btn-default">Next</button><br><br>
                             </form>
+                            </div>
+                            </div>
                         </div>
                     </div>
                 </div>

@@ -1,6 +1,6 @@
 
 
-<%@page import="com.plagiar.entities.University"%>
+<%@ page import="com.plagiar.entities.University" %>
 <%@ page import="com.plagiar.entities.Department" %>
 <%@ page import="com.plagiar.entities.PathsPlagiar" %>
 <%@ page import="com.plagiar.entities.FilesPlagiar" %>
@@ -26,6 +26,22 @@
         <script src="jquery/jquery-1.12.4.min.js"></script>
         <script src="bootstrap/js/bootstrap.min.js"></script>
         <link rel="shortcut icon" href="favicon.ico" />
+        <script>
+            function validate(){
+            var x = document.forms["addFile"]["university"].value;
+            if (x === "") {
+                    alert("You must select the university!");
+                    return false;
+                }
+            }
+        </script>
+        <style>
+            #contentBody, .container-fluid {
+                /*height:523px;*/
+                overflow-y:auto;
+                height:77%;
+            }
+        </style>
     </head>
     <body>
         <jsp:include page="header.jsp"/>
@@ -40,35 +56,40 @@
 
                     <div class="panel-default">
                         <div class="panel-body">
-                            <%
-                                PlagiarRemote plagiarRemote = null;
+                            <div class="panel panel-default" style="background-color: ghostwhite;">
+                                <div class="container-fluid">
+                                    <%
+                                        PlagiarRemote plagiarRemote = null;
 
-                                try {
-                                    Context context = new InitialContext();
-                                    plagiarRemote = (PlagiarRemote) context.lookup(PlagiarRemote.class.getName());
+                                        try {
+                                            Context context = new InitialContext();
+                                            plagiarRemote = (PlagiarRemote) context.lookup(PlagiarRemote.class.getName());
 
-                                } catch (Exception e) {
-                                    e.printStackTrace();
-                                }
-                                
-                                String catType = request.getParameter("categoryType");
-                                //System.out.println(title+author+catType+university);
-                                List<University> listAllUniversity = plagiarRemote.getUniversityList();
-                                
-                            %>
-                            <h3>Add File</h3>
-                            <form action="addFile3.jsp?catType=<%=catType%>" method="post">
-                                Selected Submission Type: <input type="text" disabled="disabled" value="<%=catType%>" class="form-control" style="width:300px;"><br/>
-                                Select University: <select name="university" class="form-control" style="width:300px;">
-                                    <option selected="selected">Please select ...</option>
-                                    <% for (University university : listAllUniversity) {
-                                    %><option><%=university.getUniversityName()%></option><%
+                                        } catch (Exception e) {
+                                            e.printStackTrace();
                                         }
-                                    %>
-                                </select><br/>
 
-                                <a class="btn btn-default" href="addFile.jsp">Back</a> <button type="submit" class="btn btn-default">Next</button>
-                            </form>
+                                        String catType = request.getParameter("categoryType");
+                                        //System.out.println(title+author+catType+university);
+                                        List<University> listAllUniversity = plagiarRemote.getUniversityList();
+
+                                    %>
+                                    <h3>Add File</h3>
+                                    <form name="addFile" action="addFile3.jsp?catType=<%=catType%>" method="post">
+                                        Selected Submission Type: <input type="text" disabled="disabled" value="<%=catType%>" class="form-control" style="width:300px;"><br/>
+                                        Select University: <select name="university" class="form-control" style="width:300px;">
+                                            <option value="">Please select ...</option>
+                                            <% for (University university : listAllUniversity) {
+                                            %><option value="<%=university.getUniversityName()%>"><%=university.getUniversityName()%></option><%
+                                                }
+                                            %>
+                                        </select><br/>
+
+                                        <a class="btn btn-default" href="addFile.jsp">Back</a> <button type="submit" class="btn btn-default" onclick="return validate();">Next</button><br><br>
+                                    </form>
+                                </div>
+                            </div>
+
                         </div>
                     </div>
                 </div>

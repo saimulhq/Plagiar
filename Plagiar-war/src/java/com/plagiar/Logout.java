@@ -9,7 +9,8 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-@WebServlet(name = "Logout", urlPatterns = {"/logout"})
+//@WebServlet(name = "Logout", urlPatterns = {"/logout"})
+@WebServlet("/Logout")
 public class Logout extends HttpServlet {
 
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)

@@ -18,6 +18,13 @@
         <link href="styles/template.css" rel="stylesheet">
         <script src="jquery/jquery-1.12.4.min.js"></script>
         <script src="bootstrap/js/bootstrap.min.js"></script>
+        <style>
+            #contentBody, .container-fluid {
+                /*height:523px;*/
+                overflow-y:auto;
+                height:77%;
+            }
+        </style>
     </head>
     <body>
         <%
@@ -31,24 +38,9 @@
                 e.printStackTrace();
             }
 
-            //DirectoryPlagiar directory = new DirectoryPlagiar();
-            //Category category = new Category();
             String university = request.getParameter("university");
-//            String department = request.getParameter("department");
-//            String type = request.getParameter("catType");
-//            String catName = request.getParameter("catName");
 
             List<Department> listDepartmentByUniname = plagiarRemote.getDepartmentListByUniversity(university);
-
-//            directory.setUniversity(university);
-//            directory.setDepartment(department);
-//            directory.setType(type);
-//            directory.setCategory(catName);
-
-//            plagiarRemote.addCategoryInDatabase(directory);
-//            PathsPlagiar server = plagiarRemote.getDirectoryPath("CatPath");
-//            String serverPath = server.getPath();
-//            plagiarRemote.createDirectory(serverPath, catName);
 
         %>
         
@@ -63,8 +55,11 @@
 
                 <div class="panel-default">
                     <div class="panel-body">
+                        <div class="panel panel-default" style="background-color: ghostwhite;">
+                            <div class="container-fluid">
                         <h3>New Category</h3>
                         <form action="createCategory3.jsp?uni=<%=university%>" method="post">
+                            Selected University: <input type="text" class="form-control" style="width:300px;" value="<%=university%>" disabled="disabled"><br/>
                             Select Department: <select id="department" name="department" class="form-control" style="width:300px;">
                                     <option selected="selected">Please select ...</option>
                                     <%
@@ -75,8 +70,10 @@
                                 </select><br/>
                                 
                                 Category Name: <input name="category" type="text" class="form-control" style="width:300px;"><br/>
-                                <button type="submit" class="btn btn-default">Create</button>
+                                <button type="submit" class="btn btn-default">Create</button><br><br>
                         </form>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
