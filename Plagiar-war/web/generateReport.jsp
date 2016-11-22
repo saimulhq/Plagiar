@@ -130,11 +130,11 @@
 
                                     document.add(new Paragraph("Plagiarism Detection Information", defaultFont));
 
-                                    PdfPTable table2 = new PdfPTable(4); // 3 columns.
-                                    table2.setWidthPercentage(100); //Width 100%
-                                    table2.setSpacingBefore(10f); //Space before table
-                                    table2.setSpacingAfter(10f); //Space after table
-                                    //Set Column widths
+                                    PdfPTable table2 = new PdfPTable(4); 
+                                    table2.setWidthPercentage(100); 
+                                    table2.setSpacingBefore(10f); 
+                                    table2.setSpacingAfter(10f); 
+                                    
                                     float[] columnWidths2 = {1f, 1f, 1f, 1f};
                                     table2.setWidths(columnWidths2);
 
