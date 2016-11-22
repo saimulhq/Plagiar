@@ -174,23 +174,17 @@ public class Plagiar implements PlagiarRemote {
     @Override
     public void splitFile1(File file) throws IOException {
 
-      //Loading an existing PDF document
-      //File file = new File("C:\\Users\\Saimul\\Desktop\\split\\lesson2.pdf");
       PDDocument document = PDDocument.load(file);
 
-      //Instantiating Splitter class
       Splitter splitter = new Splitter();
 
-      //splitting the pages of a PDF document
       List<PDDocument> Pages = splitter.split(document);
 
-      //Creating an iterator 
       Iterator<PDDocument> iterator = Pages.listIterator();
       
       paths=getDirectoryPath("SplitDirPath1");
       String path1 = paths.getPath();
       
-      //Saving each page as an individual document
       int i = 1;
       while(iterator.hasNext()) {
          PDDocument pd = iterator.next();
@@ -203,22 +197,17 @@ public class Plagiar implements PlagiarRemote {
    @Override 
    public void splitFile2(File file) throws IOException {
 
-      //Loading an existing PDF document
-      //File file = new File("C:\\Users\\Saimul\\Desktop\\split\\lesson2.pdf");
       PDDocument document = PDDocument.load(file); 
 
-      //Instantiating Splitter class
       Splitter splitter = new Splitter();
 
-      //splitting the pages of a PDF document
       List<PDDocument> Pages = splitter.split(document);
 
-      //Creating an iterator 
       Iterator<PDDocument> iterator = Pages.listIterator();
       
       paths=getDirectoryPath("SplitDirPath2");
       String path2 = paths.getPath();
-      //Saving each page as an individual document
+      
       int i = 1;
       while(iterator.hasNext()) {
          PDDocument pd = iterator.next();
@@ -450,15 +439,6 @@ public class Plagiar implements PlagiarRemote {
         writer.addDocument(doc);
     }
 
-//    public String getAllText(File f) throws FileNotFoundException, IOException {
-//        String textFileContent = "";
-//
-//        for (String line : Files.readAllLines(Paths.get(f.getAbsolutePath()))) {
-//            textFileContent += line;
-//        }
-//        //System.out.println(textFileContent);
-//        return textFileContent;
-//    }
     @Override
     public double getCosineSimilarity() {
         return (v1.dotProduct(v2)) / (v1.getNorm() * v2.getNorm());
@@ -514,7 +494,6 @@ public class Plagiar implements PlagiarRemote {
                 }
                 hexString.append(hex);
             }
-            //System.out.println("Hex format : " + hexString.toString());
             return hexString.toString();
         } catch (NoSuchAlgorithmException ex) {
             Logger.getLogger(Plagiar.class.getName()).log(Level.SEVERE, null, ex);
