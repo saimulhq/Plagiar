@@ -315,7 +315,7 @@ public class Plagiar implements PlagiarRemote {
     
     @Override
     public List<FilesPlagiar> getSubmissions(String assignedto) {
-        return em.createNativeQuery("select * from files_plagiar where assignedto=?1", FilesPlagiar.class).setParameter(1, assignedto).getResultList();
+        return em.createNativeQuery("select * from files_plagiar where assignedto=?1 order by timeadded desc", FilesPlagiar.class).setParameter(1, assignedto).getResultList();
     }
     
     @Override
@@ -334,7 +334,6 @@ public class Plagiar implements PlagiarRemote {
         String path = paths.getPath();
         File file = new File(path + uni+ "\\"+dept+"\\"+cat);
         try {
-            //file.delete();
             FileUtils.deleteDirectory(file);
         } catch (IOException ex) {
             Logger.getLogger(Plagiar.class.getName()).log(Level.SEVERE, null, ex);
@@ -394,8 +393,7 @@ public class Plagiar implements PlagiarRemote {
         }
         CharArraySet stopSet = new CharArraySet(Version.LUCENE_CURRENT, words, true);
         Analyzer analyzer = new StandardAnalyzer(stopSet);
-        IndexWriterConfig iwc = new IndexWriterConfig(Version.LUCENE_CURRENT,
-                analyzer);
+        IndexWriterConfig iwc = new IndexWriterConfig(Version.LUCENE_CURRENT,analyzer);
         IndexWriter writer = new IndexWriter(directory, iwc);
         addDocument(writer, t1);
         addDocument(writer, t2);
@@ -476,8 +474,6 @@ public class Plagiar implements PlagiarRemote {
         }
     }
 
-
-    
     @Override
     public String generateHashPassword(String password) {
         try {
